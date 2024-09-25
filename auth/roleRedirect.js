@@ -2,13 +2,14 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/fir
 import { ref, query, equalTo, orderByChild, get } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 import { auth, database } from '../environment/firebaseConfig.js';
 
+const baseUrl = window.location.origin.includes('github.io') ? '/joako' : '';
 // Mapeo de roles a sus respectivas páginas
 const rolePages = {
-  "Desarrollador": "../../users/dev/pages/biblioteca.html",
-  "Administrador": "../joako/users/admin/pages/biblioteca.html",
-  "Cobrador": "../../users/cobrador/pages/biblioteca.html",
-  "Propietario": "../../users/owner/pages/biblioteca.html",
-  "Conductor": "../../users/conductor/pages/biblioteca.html"
+  "Desarrollador": `${baseUrl}/users/dev/pages/biblioteca.html`,
+  "Administrador": `${baseUrl}/users/admin/pages/biblioteca.html`,
+  "Cobrador": `${baseUrl}/users/cobrador/pages/biblioteca.html`,
+  "Propietario": `${baseUrl}/users/owner/pages/biblioteca.html`,
+  "Conductor": `${baseUrl}/users/conductor/pages/biblioteca.html`
 };
 
 function detectRoleAndRedirect() {

@@ -4,11 +4,11 @@ import { auth, database } from '../environment/firebaseConfig.js';
 
 // Mapeo de roles a sus respectivas páginas
 const rolePages = {
-  "Desarrollador": "../users/dev/pages/biblioteca.html",
-  "Administrador": "../users/admin/pages/biblioteca.html",
-  "Cobrador": "../users/cobrador/pages/biblioteca.html",
-  "Propietario": "../users/owner/pages/biblioteca.html",
-  "Conductor": "../users/conductor/pages/biblioteca.html"
+  "Desarrollador": "./users/dev/pages/biblioteca.html",
+  "Administrador": "./users/admin/pages/biblioteca.html",
+  "Cobrador": "./users/cobrador/pages/biblioteca.html",
+  "Propietario": "./users/owner/pages/biblioteca.html",
+  "Conductor": "./users/conductor/pages/biblioteca.html"
 };
 
 function detectRoleAndRedirect() {

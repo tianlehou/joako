@@ -12,7 +12,7 @@ import "../../../modules/excel/downloadToExcel-biblioteca.js";
 import { initializeSearch } from "./modules/searchFunction.js";
 import { includeHTML } from '../components/includeHTML/includeHTML.js';
 import { changeEstadoSelectEvent, changeRoleSelectEvent } from "../modules/tabla/changeSelectEvent.js";
-import { filterDataByRole } from "../../../modules/tabla/filterDataByRole.js"; // Importar la función de filtrado
+import { filterDataByRole } from "../../modules/tabla/filterDataByRole.js"; // Importar la función de filtrado
 
 // Constantes y variables de estado
 const tabla = document.getElementById("contenidoTabla");

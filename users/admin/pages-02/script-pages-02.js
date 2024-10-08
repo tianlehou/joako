@@ -8,7 +8,7 @@ import { checkUserAccess } from "../../../modules/accessControl/roleAccessContro
 import "./modules/downloadToExcel.js";
 import { deleteRow } from "./modules/deleteRow.js";
 import { addEditEventListeners } from "./modules/editRow.js";
-import { handleFileUpload } from '../../../modules/Excel/uploadExcelHandler.js';
+import { handleFileUpload } from './modules/Excel/uploadExcelHandler.js';
 
 import { initializeSearch } from "./modules/searchFunction.js";
 import { initScrollButtons } from "../modules/scrollButtons.js";

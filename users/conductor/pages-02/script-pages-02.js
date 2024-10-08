@@ -4,8 +4,8 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 import { database } from "../../../environment/firebaseConfig.js";
 
-import { checkAuth } from "../../../auth/authCheck.js";
-import { checkUserAccess } from "../../../auth/roleAccessControl.js";
+import { checkAuth } from '../../../modules/accessControl/authCheck.js';
+import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
 
 import { includeHTML } from "../components/includeHTML/includeHTML.js";
 import { updateSelectElements } from "./modules/updateSelectElements.js";
@@ -13,7 +13,7 @@ import {
     getMonthAndYearFromURL,
     generateCalendarDays,
 } from "./modules/calendarUtils.js";
-import { filtrarDatosPorUsuarioAutenticado } from "../../../modules/tabla/filterDataByUID.js";
+import { filtrarDatosPorUsuarioAutenticado } from "../../../modules/tabla/filterData/filterDataByUID.js";
 
 // Lee la variable collection desde el HTML
 export const collection = (() => {

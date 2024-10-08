@@ -1,6 +1,6 @@
 import "./auth/signin_Form.js";
 import "./auth/forgot_password.js"
-import "./modules/showHidePassword/showHidePassword.js";
+import "./auth/showHidePassword/showHidePassword.js";
 
 // Textos que se mostrarán en el carrusel
 const texts = [

@@ -1,4 +1,4 @@
-import { getUserRole } from "../../accessControl/getUserRole.js";
+import { getUserRole } from "../../../../../../modules/accessControl/getUserRole.js";
 
 // Función para filtrar los datos según el rol del usuario
 export async function filterDataByRole(data) {

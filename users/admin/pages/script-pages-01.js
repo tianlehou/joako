@@ -2,8 +2,8 @@ import { ref, onValue, update } from "https://www.gstatic.com/firebasejs/10.11.0
 import { database } from "../../../environment/firebaseConfig.js";
 
 import "../auth/signup_Form.js";
-import { checkAuth } from '../../../auth/authCheck.js';
-import { checkUserAccess } from "../../../auth/roleAccessControl.js";
+import { checkAuth } from '../../../modules/accessControl/authCheck.js';
+import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
 
 import { deleteRow } from "../modules/tabla/deleteRow.js";
 import { addEditEventListeners } from "./modules/editRow.js";
@@ -12,7 +12,7 @@ import "../../../modules/excel/downloadToExcel-biblioteca.js";
 import { initializeSearch } from "./modules/searchFunction.js";
 import { includeHTML } from '../components/includeHTML/includeHTML.js';
 import { changeEstadoSelectEvent, changeRoleSelectEvent } from "../modules/tabla/changeSelectEvent.js";
-import { filterDataByRole } from "../../../modules/tabla/filterDataByRole.js"; // Importar la función de filtrado
+import { filterDataByRole } from "../../../modules/tabla/filterData/filterDataByRole.js"; // Importar la función de filtrado
 
 // Constantes y variables de estado
 const tabla = document.getElementById("contenidoTabla");
@@ -64,7 +64,7 @@ export function mostrarDatos() {
                 <div class="flex-container">
                   <span>${user.role}</span>
                   <select class="form-select role-select" data-id="${user.id}">
-                    <option value="Ninguno" ${user.role === "Ninguno" ? "selected" : ""}>Ninguno</option>
+                    <option value="" ${user.role === "" ? "selected" : ""}></option>
                     <option value="Administrador" ${user.role === "Administrador" ? "selected" : ""}>Administrador</option>
                     <option value="Cobrador" ${user.role === "Cobrador" ? "selected" : ""}>Cobrador</option>
                     <option value="Propietario" ${user.role === "Propietario" ? "selected" : ""}>Propietario</option>

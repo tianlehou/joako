@@ -2,8 +2,9 @@ import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebas
 import { database } from "../../../environment/firebaseConfig.js";
 
 import "../auth/signup_Form.js";
-import { checkAuth } from '../../../auth/authCheck.js';
-import { checkUserAccess } from "../../../auth/roleAccessControl.js";
+import { checkAuth } from '../../../modules/accessControl/authCheck.js';
+import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
+import { filterDataByRole } from "../../../../modules/tabla/filterData/filterDataByRole.js";
 
 import { deleteRow } from "../modules/tabla/deleteRow.js";
 import { addEditEventListeners } from "./modules/editRow.js";
@@ -11,9 +12,8 @@ import "../../../modules/excel/downloadToExcel-biblioteca.js";
 
 import { initializeSearch } from "./modules/searchFunction.js";
 import { includeHTML } from '../components/includeHTML/includeHTML.js';
-import { changeEstadoSelectEvent } from "../modules/tabla/changeSelectEvent.js";
-
-import { filterDataByRole } from "../../../../modules/tabla/filterDataByRole.js"; // Importar la función de filtrado
+import { changeEstadoSelectEvent, changeRoleSelectEvent } from "../modules/tabla/changeSelectEvent.js";
+import { updateSelectElements } from "./modules/updateSelectElements.js";
 
 // Constantes y variables de estado
 const tabla = document.getElementById("contenidoTabla");
@@ -53,7 +53,7 @@ export function mostrarDatos() {
                 <div class="flex-container">
                   <span>${user.estado}</span>
                   <select class="form-select estado-select" data-id="${user.id}">
-                    <option value="Ninguno" ${user.estado === "Ninguno" ? "selected" : ""}>Ninguno</option>
+                    <option value="" ${user.estado === "" ? "selected" : ""}></option>
                     <option value="Activo" ${user.estado === "Activo" ? "selected" : ""}>Activo</option>
                     <option value="Sin carro" ${user.estado === "Sin carro" ? "selected" : ""}>Sin carro</option>
                     <option value="Suspendido" ${user.estado === "Suspendido" ? "selected" : ""}>Suspendido</option>
@@ -62,8 +62,14 @@ export function mostrarDatos() {
                 </div>
               </td>
               <td class="text-center role-col">
-                <div class="text-center">
+                <div class="flex-container">
                   <span>${user.role}</span>
+                  <select class="form-select role-select" data-id="${user.id}">
+                    <option value="" ${user.role === "" ? "selected" : ""}></option>
+                    <option value="Propietario" ${user.role === "Propietario" ? "selected" : ""}>Propietario</option>
+                    <option value="Conductor" ${user.role === "Conductor" ? "selected" : ""}>Conductor</option>
+                    <option value="Secretario" ${user.role === "Secretario" ? "selected" : ""}>Secretario</option>
+                  </select>
                 </div>
               </td>
               <td>
@@ -77,6 +83,7 @@ export function mostrarDatos() {
     }
     deleteRow(database, collection);
     addEditEventListeners(database, collection);
+    updateSelectElements()
   });
 }
 
@@ -89,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeSearch(tabla);
   includeHTML();
   changeEstadoSelectEvent(tabla, database, collection);
+  changeRoleSelectEvent(tabla, database, collection)
 });
 
 console.log(database);

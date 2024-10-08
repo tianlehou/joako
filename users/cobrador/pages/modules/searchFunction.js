@@ -1,13 +1,13 @@
-// searchFunction.js
 import { database } from "../../../../environment/firebaseConfig.js";
 import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
-import { changeEstadoSelectEvent } from "../../modules/tabla/changeSelectEvent.js";
+import { changeEstadoSelectEvent, changeRoleSelectEvent } from "../../modules/tabla/changeSelectEvent.js"; // Importa las funciones de changeSelectEvent.js
+import { updateSelectElements } from "./updateSelectElements.js"; // Importa la función de updateSelectElements.js
+import { addEditEventListeners } from "./editRow.js";
 
 const tabla = document.getElementById("contenidoTabla");
 
 export function findAndSearch(tabla) {
   const input = document.getElementById("searchInput").value.toLowerCase();
-  // const collection = "libreria-de-conductores"; // La colección en Firebase
 
   // Obtén los datos desde Firebase
   onValue(ref(database, collection), (snapshot) => {
@@ -32,6 +32,27 @@ function renderUsersTable(data) {
   const tabla = document.getElementById("miTabla");
   tabla.innerHTML = "";
 
+  // Agrega el thead una sola vez antes de las filas
+  const thead = `
+    <thead>
+      <tr>
+        <th class="text-center">#</th>
+        <th class="text-center" id="headerTabla">Unidad</th>
+        <th class="text-center" id="headerTabla">Placa</th>
+        <th class="text-center" id="headerTabla">Nombre</th>
+        <th class="text-center" id="headerTabla">Cédula</th>
+        <th class="text-center" id="headerTabla">WhatsApp</th>
+        <th class="text-center" id="headerTabla">Estado</th>
+        <th class="text-center" id="headerTabla">Rol</th>
+        <th class="text-center" id="headerTabla">Acciones</th>
+        <th class="text-center" id="headerTabla">Correo</th>
+        <th class="text-center" id="headerTabla">UserID</th>
+      </tr>
+    </thead>
+  `;
+  tabla.innerHTML = thead; // Inserta el encabezado en la tabla
+
+  // Itera sobre los datos para crear las filas
   data.forEach((user, index) => {
     const row = `
       <tr>
@@ -40,16 +61,20 @@ function renderUsersTable(data) {
         <td class="text-center">${user.placa}</td>
         <td class="text-center">${user.nombre}</td>
         <td class="text-center">${user.cedula}</td>
-        <td class="text-center">${user.whatsapp}</td>
+        <td class="text-center">
+          <a href="https://wa.me/${user.whatsapp}" target="_blank">
+            ${user.whatsapp}
+          </a>
+        </td>
         <td class="text-center estado-col">
           <div class="flex-container">
             <span>${user.estado}</span>
             <select class="form-select estado-select" data-id="${user.id}">
-              <option value="Ninguno" ${user.estado === "Ninguno" ? "selected" : ""}>Ninguno</option>
+              <option value="" ${user.estado === "" ? "selected" : ""}></option>
               <option value="Activo" ${user.estado === "Activo" ? "selected" : ""}>Activo</option>
+              <option value="Sin carro" ${user.estado === "Sin carro" ? "selected" : ""}>Sin carro</option>
               <option value="Suspendido" ${user.estado === "Suspendido" ? "selected" : ""}>Suspendido</option>
               <option value="Expulsado" ${user.estado === "Expulsado" ? "selected" : ""}>Expulsado</option>
-              <option value="Sin carro" ${user.estado === "Sin carro" ? "selected" : ""}>Sin carro</option>
             </select>
           </div>
         </td>
@@ -57,22 +82,27 @@ function renderUsersTable(data) {
           <div class="flex-container">
             <span>${user.role}</span>
             <select class="form-select role-select" data-id="${user.id}">
-              <option value="Ninguno" ${user.role === "Ninguno" ? "selected" : ""}>Ninguno</option>
+              <option value="" ${user.role === "" ? "selected" : ""}></option>
               <option value="Propietario" ${user.role === "Propietario" ? "selected" : ""}>Propietario</option>
               <option value="Conductor" ${user.role === "Conductor" ? "selected" : ""}>Conductor</option>
               <option value="Secretario" ${user.role === "Secretario" ? "selected" : ""}>Secretario</option>
             </select>
           </div>
         </td>
+        <td><button class="btn btn-primary edit-user-button" data-id="${user.id}"><i class="bi bi-highlighter"></i></button></td>
         <td class="text-center">${user.email}</td>
-        <td>
-          <button class="btn btn-primary edit-user-button" data-id="${user.id}">Editar</button>
-          <button class="btn btn-danger delete-user-button" data-id="${user.id}">Eliminar</button>
-        </td>
+        <td class="text-center">${user.userId}</td>
       </tr>
     `;
-    tabla.innerHTML += row;
+    tabla.innerHTML += row; // Inserta cada fila debajo del thead
   });
+
+  // Actualizar selects después de renderizar los datos
+  updateSelectElements(); // Vuelve a agregar los eventos a los selects
+  addEditEventListeners(database, collection);
+  // Agregar eventos para los selectores de estado y rol después del renderizado
+  changeEstadoSelectEvent(tabla, database, collection); // Asegúrate de que el evento del select de estado funcione
+  changeRoleSelectEvent(tabla, database, collection);   // Asegúrate de que el evento del select de rol funcione
 }
 
 export function initializeSearch(tabla) {
@@ -86,7 +116,7 @@ export function initializeSearch(tabla) {
   });
 }
 
-// Inicializa la tabla y eventos al cargar el documento
+// Inicializa los eventos al cargar el documento
 document.addEventListener('DOMContentLoaded', () => {
-  changeEstadoSelectEvent(tabla, database, collection);
+  initializeSearch(tabla);
 });

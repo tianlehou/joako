@@ -5,8 +5,8 @@ import {
 import { database } from "../../../environment/firebaseConfig.js";
 
 import "./modules/newRegister.js";
-import { checkAuth } from "../../../auth/authCheck.js";
-import { checkUserAccess } from "../../../auth/roleAccessControl.js";
+import { checkAuth } from '../../../modules/accessControl/authCheck.js';
+import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
 
 import "./modules/downloadToExcel.js";
 import { deleteRow } from "./modules/deleteRow.js";
@@ -20,8 +20,8 @@ import { includeHTML } from "../components/includeHTML/includeHTML.js";
 import { updateSelectElements } from "./modules/updateSelectElements.js";
 import {
     getDaysInMonth,
-    getMonthAndYearFromURL,
     generateCalendarDays,
+    getMonthAndYearFromURL,
 } from "./modules/calendarUtils.js";
 
 // Constantes y variables de estado
@@ -34,7 +34,6 @@ export const collection = (() => {
         return scriptTag.getAttribute("data-collection");
     }
 })();
-
 if (!collection) {
     console.error("La variable collection está vacía.");
 }
@@ -82,10 +81,6 @@ export function mostrarDatos() {
                     <button class="btn btn-primary mg-05em edit-user-button" data-id="${user.id
                 }">
                         <i class="bi bi-pencil"></i>
-                    </button>
-                    <button class="btn btn-danger mg-05em delete-user-button" data-id="${user.id
-                }">
-                        <i class="bi bi-eraser-fill"></i>
                     </button>
                 </td>
                 <td class="text-center">

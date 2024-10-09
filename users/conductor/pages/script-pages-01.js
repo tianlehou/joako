@@ -34,28 +34,29 @@ export function mostrarDatos() {
             <tr>
               <td class="text-center">${filaNumero++}</td>
               <td class="text-center">${user.unidad}</td>
-              <td class="text-center">${user.placa}</td>
-              <td class="text-center">${user.nombre}</td>
-              <td class="text-center">${user.cedula}</td>
-              <td class="text-center">
-                <a href="https://wa.me/${user.whatsapp}" target="_blank">
-                  ${user.whatsapp}
-                </a>
+
+              <td class="text-center role-col">
+                <div class="text-center">
+                  <span>${user.role}</span>
+                </div>
               </td>
+
               <td class="text-center estado-col">
-                <div class="flex-container">
-                  <span>${user.estado}</span>
-                  <select class="form-select estado-select" data-id="${user.id}">
+                <div class="flex-container text-center">
+                  <span class="text-center">${user.estado}</span>
+                  <select data-id="${user.id}" class="form-select estado-select display-none">
                     <option value="Ninguno" ${user.estado === "Ninguno" ? "selected" : ""}>Ninguno</option>
                     <option value="Activo" ${user.estado === "Activo" ? "selected" : ""}>Activo</option>
                     <option value="Sin carro" ${user.estado === "Sin carro" ? "selected" : ""}>Sin carro</option>
                   </select>
                 </div>
               </td>
-              <td class="text-center role-col">
-                <div class="text-center">
-                  <span>${user.role}</span>
-                </div>
+              
+              <td class="text-center">${user.nombre}</td>
+              <td class="text-center">
+                <a href="https://wa.me/${user.whatsapp}" target="_blank">
+                  ${user.whatsapp}
+                </a>
               </td>
             </tr>
           `;

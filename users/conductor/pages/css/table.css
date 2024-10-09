@@ -67,17 +67,17 @@ table th:nth-child(1) {
 
 table td:nth-child(2),
 table th:nth-child(2) {
-    width: 120px;
+    width: 150px;
 }
 
 table td:nth-child(3),
 table th:nth-child(3) {
-    width: 180px;
+    width: 150px;
 }
 
 table td:nth-child(4),
 table th:nth-child(4) {
-    width: 180px;
+    width: 150px;
 }
 
 table td:nth-child(5),

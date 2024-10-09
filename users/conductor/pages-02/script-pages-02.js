@@ -13,7 +13,7 @@ import {
     getMonthAndYearFromURL,
     generateCalendarDays,
 } from "./modules/calendarUtils.js";
-import { filtrarDatosPorUsuarioAutenticado } from "../../../modules/tabla/filterData/filterDataByUID.js";
+import { filtrarDatosPorUsuarioAutenticado } from "../modules/tabla/filterData/filterDataByUID.js";
 
 // Lee la variable collection desde el HTML
 export const collection = (() => {

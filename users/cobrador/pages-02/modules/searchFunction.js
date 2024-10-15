@@ -73,9 +73,6 @@ function renderUsersTable(data) {
           <button class="btn btn-primary mg-05em edit-user-button" data-id="${user.id}">
             <i class="bi bi-pencil"></i>
           </button>
-          <button class="btn btn-danger mg-05em delete-user-button" data-id="${user.id}">
-            <i class="bi bi-eraser-fill"></i>
-          </button>
         </td>
         <td class="text-center">
           <span class="${!user.userId ? 'invisible-value' : ''}">${user.userId || ''}</span>

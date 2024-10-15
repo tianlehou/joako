@@ -1,7 +1,4 @@
-import {
-    ref,
-    onValue,
-} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 import { database } from "../../../environment/firebaseConfig.js";
 
 import "./modules/newRegister.js";
@@ -9,7 +6,6 @@ import { checkAuth } from '../../../modules/accessControl/authCheck.js';
 import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
 
 import "./modules/downloadToExcel.js";
-import { deleteRow } from "./modules/deleteRow.js";
 import { addEditEventListeners } from "./modules/editRow.js";
 import { handleFileUpload } from "../modules/Excel/uploadExcelHandler.js";
 
@@ -18,11 +14,7 @@ import { initializeSearch } from "./modules/searchFunction.js";
 import { initScrollButtons } from "../modules/scrollButtons.js";
 import { includeHTML } from "../components/includeHTML/includeHTML.js";
 import { updateSelectElements } from "./modules/updateSelectElements.js";
-import {
-    getDaysInMonth,
-    generateCalendarDays,
-    getMonthAndYearFromURL,
-} from "./modules/calendarUtils.js";
+import { getDaysInMonth, generateCalendarDays, getMonthAndYearFromURL } from "./modules/calendarUtils.js";
 
 // Constantes y variables de estado
 const tabla = document.getElementById("contenidoTabla");
@@ -91,7 +83,6 @@ export function mostrarDatos() {
             tabla.appendChild(row);
         });
 
-        deleteRow(database, collection);
         updateSelectElements(database, collection);
         addEditEventListeners(database, collection);
         updateTotalSums(

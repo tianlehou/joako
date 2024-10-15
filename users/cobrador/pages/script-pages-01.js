@@ -4,7 +4,7 @@ import { database } from "../../../environment/firebaseConfig.js";
 import "../auth/signup_Form.js";
 import { checkAuth } from '../../../modules/accessControl/authCheck.js';
 import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
-import { filterDataByRole } from "../../../modules/tabla/filterData/filterDataByRole.js";
+import { filterDataByRole } from "./modules/tabla/filterData/filterDataByRole.js";
 
 import { deleteRow } from "../modules/tabla/deleteRow.js";
 import { addEditEventListeners } from "./modules/editRow.js";

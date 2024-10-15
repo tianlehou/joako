@@ -41,6 +41,7 @@ export function mostrarDatos() {
             <tr>
               <td class="text-center">${filaNumero++}</td>
               <td class="text-center">${user.unidad}</td>
+              <td class="text-center display-none">${user.userId}</td>
               <td class="text-center">${user.placa}</td>
               <td class="text-center">${user.nombre}</td>
               <td class="text-center">${user.cedula}</td>
@@ -76,7 +77,6 @@ export function mostrarDatos() {
                 <button class="btn btn-primary edit-user-button" data-id="${user.id}"><i class="bi bi-highlighter"></i></button>
               </td>
               <td class="text-center">${user.email}</td>
-              <td class="text-center">${user.userId}</td>
             </tr>
           `;
       tabla.innerHTML += row;

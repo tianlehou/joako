@@ -11,6 +11,7 @@ function loadHTMLmaincontent() {
           <tr>
             <th class="text-center">#</th>
             <th class="text-center">Unidad</th>
+            <th class="text-center display-none">UserID</th>
             <th class="text-center">Placa</th>
             <th class="text-center">Nombre</th>
             <th class="text-center">Cédula</th>
@@ -19,7 +20,6 @@ function loadHTMLmaincontent() {
             <th class="text-center">Rol</th>
             <th>Acciones</th>
             <th class="text-center">Correo</th>
-            <th class="text-center">UserID</th>
           </tr>
         </thead>
 

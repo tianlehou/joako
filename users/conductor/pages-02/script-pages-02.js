@@ -1,7 +1,4 @@
-import {
-    ref,
-    onValue,
-} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 import { database } from "../../../environment/firebaseConfig.js";
 
 import { checkAuth } from '../../../modules/accessControl/authCheck.js';
@@ -9,10 +6,7 @@ import { checkUserAccess } from "../../../modules/accessControl/roleAccessContro
 
 import { includeHTML } from "../components/includeHTML/includeHTML.js";
 import { updateSelectElements } from "./modules/updateSelectElements.js";
-import {
-    getMonthAndYearFromURL,
-    generateCalendarDays,
-} from "./modules/calendarUtils.js";
+import { getMonthAndYearFromURL, generateCalendarDays } from "./modules/calendarUtils.js";
 import { filtrarDatosPorUsuarioAutenticado } from "./modules/tabla/filterData/filterDataByUID.js";
 
 // Lee la variable collection desde el HTML

@@ -2,13 +2,13 @@ import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebas
 import { database } from "../../../environment/firebaseConfig.js";
 
 import "./modules/newRegister.js";
-// import { checkAuth } from '../../../auth/authCheck.js';
-// import { checkUserAccess } from "../../../auth/roleAccessControl.js";
+import { checkAuth } from '../../../modules/accessControl/authCheck.js';
+import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
 
 import "./modules/downloadToExcel.js";
 import { deleteRow } from "./modules/deleteRow.js";
 import { addEditEventListeners } from "./modules/editRow.js";
-import { handleFileUpload } from '../../../modules/Excel/uploadExcelHandler.js';
+// import { handleFileUpload } from './modules/Excel/uploadExcelHandler.js';
 
 import { initializeSearch } from "./modules/searchFunction.js";
 import { initScrollButtons } from "../modules/scrollButtons.js";
@@ -32,20 +32,7 @@ if (!collection) {
     console.error('La variable collection está vacía.');
 }
 
-function getElementByIdSafe(id) {
-    const element = document.getElementById(id);
-    if (!element) {
-        console.error(`Element with ID '${id}' not found.`);
-    }
-    return element;
-}
-
 export function mostrarDatos() {
-    const tabla = getElementByIdSafe("contenidoTabla");
-    if (!tabla) {
-        return;
-    }
-    
     const { month, year } = getMonthAndYearFromURL();
 
     if (!collection) {
@@ -68,20 +55,19 @@ export function mostrarDatos() {
         data.forEach((user) => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td class="text-center">${filaNumero++}</td>
-                <td class="text-center">${user.nombre}</td>
-                ${generateCalendarDays(month, year, user)}
+                <td>${filaNumero++}</td>
+                <td>${user.nombre}</td>
+                <td>${user.correoConductor || ''}</td>
+                <td>${user.correoPropietario || ''}</td>
                 <td class="display-flex-center">
-                    <button class="btn btn-primary mg-05em edit-user-button" data-id="${user.id}">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                    <button class="btn btn-danger mg-05em delete-user-button" data-id="${user.id}">
-                        <i class="bi bi-eraser-fill"></i>
-                    </button>
+                <button class="btn btn-primary mg-05em edit-user-button" data-id="${user.id}">
+                <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-danger mg-05em delete-user-button" data-id="${user.id}">
+                <i class="bi bi-eraser-fill"></i>
+                </button>
                 </td>
-                <td class="text-center">
-                    <span class="${!user.userId ? 'invisible-value' : ''}">${user.userId || ''}</span>
-                </td>
+                ${generateCalendarDays(month, year, user)}
             `;
             tabla.appendChild(row);
         });
@@ -89,20 +75,20 @@ export function mostrarDatos() {
         addEditEventListeners(database, collection); // Asegúrate de que esto esté aquí
         deleteRow(database, collection);
         updateSelectElements(database, collection);
-        updateTotalSums(tabla, Array.from({ length: getDaysInMonth(month, year) }, (_, i) => i + 2));
+        updateTotalSums(tabla, Array.from({ length: getDaysInMonth(month, year) }, (_, i) => i + 5));
     });
 }
 
 // Inicializa la tabla y eventos al cargar el documento
 document.addEventListener('DOMContentLoaded', () => {
-    // checkAuth();
-    // checkUserAccess();
+    checkAuth();
+    checkUserAccess();
     
     mostrarDatos();
     includeHTML();
     initializeSearch(tabla);
     initScrollButtons(tabla);
-    handleFileUpload();
+    // handleFileUpload();
 });
 
 console.log(database);

@@ -9,10 +9,8 @@ import { checkUserAccess } from "../../../auth/roleAccessControl.js";
 
 import { includeHTML } from "../components/includeHTML/includeHTML.js";
 import { updateSelectElements } from "./modules/updateSelectElements.js";
-import {
-    getMonthAndYearFromURL,
-    generateCalendarDays,
-} from "./modules/calendarUtils.js";
+import { getMonthAndYearFromURL, generateCalendarDays } from "./modules/calendarUtils.js";
+import { filtrarDatosPorUsuarioAutenticado } from "./modules/tabla/filterData/filterDataByUID.js";
 
 // Lee la variable collection desde el HTML
 export const collection = (() => {
@@ -47,6 +45,7 @@ export function mostrarDatos() {
         return;
     }
 
+    // Escuchar los cambios en la base de datos
     onValue(ref(database, collection), (snapshot) => {
         tabla.innerHTML = "";
 
@@ -56,23 +55,30 @@ export function mostrarDatos() {
             data.push({ id: childSnapshot.key, ...user });
         });
 
-        data.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        // Filtrar los datos según el usuario autenticado
+        filtrarDatosPorUsuarioAutenticado(data)
+            .then((filteredData) => {
+                // Ordenar los datos filtrados
+                filteredData.sort((a, b) => a.nombre.localeCompare(b.nombre));
 
-        let filaNumero = 1;
-        data.forEach((user) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td class="text-center">${filaNumero++}</td>
-                <td class="text-center">${user.nombre}</td>
-                ${generateCalendarDays(month, year, user)}
-                <td class="text-center">
-                    <span class="${!user.userId ? "invisible-value" : ""}">${user.userId || ""
-                }</span>
-                </td>
-            `;
-            tabla.appendChild(row);
-        });
-        updateSelectElements(database, collection);
+                // Renderizar los datos filtrados en la tabla
+                let filaNumero = 1;
+                filteredData.forEach((user) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td class="text-center">${filaNumero++}</td>
+                        <td class="text-center">${user.nombre}</td>
+                        ${generateCalendarDays(month, year, user)}
+                    `;
+                    tabla.appendChild(row);
+                });
+
+                // Actualizar los elementos <select> de la tabla
+                updateSelectElements(database, collection);
+            })
+            .catch((error) => {
+                console.error("Error al filtrar los datos: ", error);
+            });
     });
 }
 

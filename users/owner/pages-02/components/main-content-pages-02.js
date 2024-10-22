@@ -8,7 +8,7 @@ function generateCalendarHeaders() {
   for (let i = 1; i <= daysInMonth; i++) {
       headers += `<th class="text-center">${i}</th>`;
   }
-  headers += `<th class="text-center">userId</th>`;
+  headers += ``;
   return headers;
 }
 

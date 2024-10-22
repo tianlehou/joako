@@ -5,6 +5,7 @@ import { checkAuth } from '../../../auth/authCheck.js';
 import { checkUserAccess } from "../../../auth/roleAccessControl.js";
 
 import { includeHTML } from '../components/includeHTML/includeHTML.js';
+import { updateSelectElements } from "./modules/tabla/updateSelectElements.js";
 import { changeEstadoSelectEvent } from "../modules/tabla/changeSelectEvent.js";
 import { filterDataByRole } from "../../../../modules/tabla/filterDataByRole.js"; // Importar la función de filtrado
 
@@ -36,7 +37,6 @@ export function mostrarDatos() {
               <td class="text-center">${user.unidad}</td>
               <td class="text-center">${user.placa}</td>
               <td class="text-center">${user.nombre}</td>
-              <td class="text-center">${user.cedula}</td>
               <td class="text-center">
                 <a href="https://wa.me/${user.whatsapp}" target="_blank">
                   ${user.whatsapp}
@@ -61,6 +61,9 @@ export function mostrarDatos() {
           `;
       tabla.innerHTML += row;
     }
+
+    // Actualiza los elementos select después de cargar la tabla
+    updateSelectElements();
   });
 }
 

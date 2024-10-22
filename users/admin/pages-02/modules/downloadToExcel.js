@@ -31,9 +31,10 @@ async function downloadToExcel() {
                 snapshot.forEach((childSnapshot) => {
                     const childData = childSnapshot.val();
                     const nombre = childData.nombre;
+                    const userId = childData.userId
                     
                     // Inicializa un objeto con el nombre y celdas vacías para los días del 1 al 31
-                    const row = { nombre: nombre };
+                    const row = { nombre: nombre, userId: userId };
                     for (let i = 1; i <= 31; i++) {
                         row[i] = ""; // Inicializa cada día con una cadena vacía
                     }

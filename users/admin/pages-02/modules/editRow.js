@@ -1,12 +1,12 @@
 // Importa funciones y referencias necesarias de Firebase y módulos personalizados
-import { update, ref } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+import { update, ref, get } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 import { database } from "../../../../environment/firebaseConfig.js";
 import { mostrarDatos, collection } from '../script-pages-02.js';
-import { loadEditNombreModal } from '../components/modal/editNombreModal.js'; // Importa la función del modal
+import { loadEditRowModal } from '../components/modal/editRowModal.js'; // Importa la función del modal
 import { loadEditNombreConfirmationModal } from '../components/modal/editNombreConfirmationModal.js'; // Importa la función del modal de confirmación
 
 // Cargar los modales una vez en el inicio
-loadEditNombreModal();
+loadEditRowModal();
 loadEditNombreConfirmationModal();
 
 // Función para añadir event listeners a los botones de editar
@@ -18,10 +18,9 @@ export function addEditEventListeners() {
 }
 
 // Función que maneja la edición de un usuario
-function handleEdit(event) {
+async function handleEdit(event) {
   const button = event.target.closest(".edit-user-button"); // Asegura que se selecciona el botón correctamente
   const id = button.getAttribute("data-id");
-  const userRow = button.closest("tr");
 
   // Verifica si el ID es válido
   if (!id) {
@@ -29,29 +28,41 @@ function handleEdit(event) {
     return;
   }
 
-  // Rellenar el input del modal con el nombre actual
-  const nombreActual = userRow.children[1].textContent;
-  document.getElementById("editNombre").value = nombreActual;
-  const UIDActual = userRow.children[34].textContent;
-  document.getElementById("editUID").value = UIDActual;
+  // Obtiene los datos del usuario desde Firebase
+  try {
+    const userSnapshot = await get(ref(database, `${collection}/${id}`));
+    if (userSnapshot.exists()) {
+      const userData = userSnapshot.val();
 
-  // Guardar el ID del usuario en un atributo de data para referencia futura
-  document.getElementById("saveEditButton").setAttribute("data-id", id);
+      // Rellenar los inputs del modal con los valores actuales de Firebase
+      document.getElementById("editNombre").value = userData.nombre || '';
+      document.getElementById("correoConductor").value = userData.correoConductor || '';
+      document.getElementById("correoPropietario").value = userData.correoPropietario || '';
 
-  // Mostrar el modal de edición
-  const editModal = new bootstrap.Modal(document.getElementById('editNombreModal'));
-  editModal.show();
+      // Guardar el ID del usuario en un atributo de data para referencia futura
+      document.getElementById("saveEditButton").setAttribute("data-id", id);
+
+      // Mostrar el modal de edición después de obtener los datos
+      const editModal = new bootstrap.Modal(document.getElementById('editNombreModal'));
+      editModal.show();
+    } else {
+      console.error("El usuario no existe en la base de datos.");
+    }
+  } catch (error) {
+    console.error("Error al obtener los datos del usuario: ", error);
+  }
 }
 
 // Evento para guardar cambios y confirmar antes de actualizar Firebase
 document.getElementById("saveEditButton").addEventListener("click", function () {
   const id = this.getAttribute("data-id");
   const nuevoNombre = document.getElementById("editNombre").value;
-  const nuevoUID = document.getElementById("editUID").value;
+  const nuevoCorreoConductor = document.getElementById("correoConductor").value;
+  const nuevoCorreoPropietario = document.getElementById("correoPropietario").value;
 
-  // Asegúrate de que el campo nombre no esté vacío
+  // Asegúrate de que los campos no estén vacíos
   if (!nuevoNombre) {
-    alert("El nombre no puede estar vacío.");
+    alert("Todos los campos son obligatorios.");
     return;
   }
 
@@ -61,7 +72,11 @@ document.getElementById("saveEditButton").addEventListener("click", function () 
 
   // Cuando se confirma la acción en el modal de confirmación
   document.getElementById("confirmActionButton").addEventListener("click", function () {
-    const updates = { nombre: nuevoNombre, userId:nuevoUID };
+    const updates = {
+      nombre: nuevoNombre,
+      correoConductor: nuevoCorreoConductor,
+      correoPropietario: nuevoCorreoPropietario
+    };
 
     // Actualiza los datos en Firebase
     update(ref(database, `${collection}/${id}`), updates)

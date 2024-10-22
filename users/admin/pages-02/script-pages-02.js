@@ -55,20 +55,19 @@ export function mostrarDatos() {
         data.forEach((user) => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td class="text-center">${filaNumero++}</td>
-                <td class="text-center">${user.nombre}</td>
-                ${generateCalendarDays(month, year, user)}
+                <td>${filaNumero++}</td>
+                <td>${user.nombre}</td>
+                <td>${user.correoConductor || ''}</td>
+                <td>${user.correoPropietario || ''}</td>
                 <td class="display-flex-center">
-                    <button class="btn btn-primary mg-05em edit-user-button" data-id="${user.id}">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                    <button class="btn btn-danger mg-05em delete-user-button" data-id="${user.id}">
-                        <i class="bi bi-eraser-fill"></i>
-                    </button>
+                <button class="btn btn-primary mg-05em edit-user-button" data-id="${user.id}">
+                <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-danger mg-05em delete-user-button" data-id="${user.id}">
+                <i class="bi bi-eraser-fill"></i>
+                </button>
                 </td>
-                <td class="text-center">
-                    <span class="${!user.userId ? 'invisible-value' : ''}">${user.userId || ''}</span>
-                </td>
+                ${generateCalendarDays(month, year, user)}
             `;
             tabla.appendChild(row);
         });
@@ -76,7 +75,7 @@ export function mostrarDatos() {
         addEditEventListeners(database, collection); // Asegúrate de que esto esté aquí
         deleteRow(database, collection);
         updateSelectElements(database, collection);
-        updateTotalSums(tabla, Array.from({ length: getDaysInMonth(month, year) }, (_, i) => i + 2));
+        updateTotalSums(tabla, Array.from({ length: getDaysInMonth(month, year) }, (_, i) => i + 5));
     });
 }
 

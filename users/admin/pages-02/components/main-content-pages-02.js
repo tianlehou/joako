@@ -8,7 +8,7 @@ function generateCalendarHeaders() {
   for (let i = 1; i <= daysInMonth; i++) {
       headers += `<th class="text-center">${i}</th>`;
   }
-  headers += `<th>Acciones</th><th class="text-center">userId</th>`; // Añade las columnas adicionales necesarias
+  headers += ``; // Añade las columnas adicionales necesarias
   return headers;
 }
 
@@ -22,8 +22,11 @@ function loadHTMLmaincontent() {
         <!-- Table - Head -->
         <thead>
           <tr>
-            <th class="text-center">#</th>
-            <th class="text-center" id="headerTabla">Nombre</th>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Conductor</th>
+            <th>Propietario</th>
+            <th>Acciones</th>
             ${generateCalendarHeaders()}
           </tr>
         </thead>

@@ -1,18 +1,25 @@
-import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+import {
+  ref,
+  onValue,
+} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 import { database } from "../../../environment/firebaseConfig.js";
 
 import "../auth/signup_Form.js";
-import { checkAuth } from '../../../modules/accessControl/authCheck.js';
+import { checkAuth } from "../../../modules/accessControl/authCheck.js";
 import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
 import { filterDataByRole } from "./modules/tabla/filterData/filterDataByRole.js";
 
 import { deleteRow } from "../modules/tabla/deleteRow.js";
 import { addEditEventListeners } from "./modules/editRow.js";
+import { addCopyEmailListeners } from "./modules/copyEmail.js";
 import "../../../modules/excel/downloadToExcel-biblioteca.js";
 
 import { initializeSearch } from "./modules/searchFunction.js";
-import { includeHTML } from '../components/includeHTML/includeHTML.js';
-import { changeEstadoSelectEvent, changeRoleSelectEvent } from "../modules/tabla/changeSelectEvent.js";
+import { includeHTML } from "../components/includeHTML/includeHTML.js";
+import {
+  changeEstadoSelectEvent,
+  changeRoleSelectEvent,
+} from "../modules/tabla/changeSelectEvent.js";
 import { updateSelectElements } from "./modules/updateSelectElements.js";
 
 // Constantes y variables de estado
@@ -39,56 +46,71 @@ export function mostrarDatos() {
       const user = filteredData[i];
       const row = `
             <tr>
-              <td class="text-center">${filaNumero++}</td>
-              <td class="text-center">${user.unidad}</td>
-              <td class="text-center display-none">${user.userId}</td>
-              <td class="text-center">${user.placa}</td>
-              <td class="text-center">${user.nombre}</td>
-              <td class="text-center">${user.cedula}</td>
-              <td class="text-center">
+              <td class="sticky-col-1">${filaNumero++}</td>
+              <td class="sticky-col-2">${user.unidad}</td>
+              <td>${user.placa}</td>
+              <td>${user.nombre}</td>
+              <td>
                 <a href="https://wa.me/${user.whatsapp}" target="_blank">
                   ${user.whatsapp}
                 </a>
               </td>
-              <td class="text-center estado-col">
+              <td class="estado-col">
                 <div class="flex-container">
                   <span>${user.estado}</span>
-                  <select class="form-select estado-select" data-id="${user.id}">
-                    <option value="" ${user.estado === "" ? "selected" : ""}></option>
-                    <option value="Activo" ${user.estado === "Activo" ? "selected" : ""}>Activo</option>
-                    <option value="Sin carro" ${user.estado === "Sin carro" ? "selected" : ""}>Sin carro</option>
-                    <option value="Suspendido" ${user.estado === "Suspendido" ? "selected" : ""}>Suspendido</option>
-                    <option value="Expulsado" ${user.estado === "Expulsado" ? "selected" : ""}>Expulsado</option>
+                  <select class="form-select estado-select" data-id="${user.id
+        }">
+                    <option value="" ${user.estado === "" ? "selected" : ""
+        }></option>
+                    <option value="Activo" ${user.estado === "Activo" ? "selected" : ""
+        }>Activo</option>
+                    <option value="Sin carro" ${user.estado === "Sin carro" ? "selected" : ""
+        }>Sin carro</option>
+                    <option value="Suspendido" ${user.estado === "Suspendido" ? "selected" : ""
+        }>Suspendido</option>
+                    <option value="Expulsado" ${user.estado === "Expulsado" ? "selected" : ""
+        }>Expulsado</option>
                   </select>
                 </div>
               </td>
-              <td class="text-center role-col">
+              <td class="role-col">
                 <div class="flex-container">
                   <span>${user.role}</span>
                   <select class="form-select role-select" data-id="${user.id}">
-                    <option value="" ${user.role === "" ? "selected" : ""}></option>
-                    <option value="Propietario" ${user.role === "Propietario" ? "selected" : ""}>Propietario</option>
-                    <option value="Conductor" ${user.role === "Conductor" ? "selected" : ""}>Conductor</option>
-                    <option value="Secretario" ${user.role === "Secretario" ? "selected" : ""}>Secretario</option>
+                    <option value="" ${user.role === "" ? "selected" : ""
+        }></option>
+                    <option value="Propietario" ${user.role === "Propietario" ? "selected" : ""
+        }>Propietario</option>
+                    <option value="Conductor" ${user.role === "Conductor" ? "selected" : ""
+        }>Conductor</option>
+                    <option value="Secretario" ${user.role === "Secretario" ? "selected" : ""
+        }>Secretario</option>
                   </select>
                 </div>
               </td>
               <td>
-                <button class="btn btn-primary edit-user-button" data-id="${user.id}"><i class="bi bi-highlighter"></i></button>
+                <button class="btn btn-primary edit-user-button" data-id="${user.id
+        }"><i class="bi bi-highlighter"></i></button>
               </td>
-              <td class="text-center">${user.email}</td>
+          <td class="email-col">
+            ${user.email} 
+            <button class="btn btn-link copy-email-button" title="Copiar correo">
+              <i class="bi bi-copy"></i>
+            </button>
+          </td>
             </tr>
           `;
       tabla.innerHTML += row;
     }
+    updateSelectElements();
+    addCopyEmailListeners();
     deleteRow(database, collection);
     addEditEventListeners(database, collection);
-    updateSelectElements()
   });
 }
 
 // Inicializa la tabla y eventos al cargar el documento
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   checkAuth();
   checkUserAccess();
 
@@ -96,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeSearch(tabla);
   includeHTML();
   changeEstadoSelectEvent(tabla, database, collection);
-  changeRoleSelectEvent(tabla, database, collection)
+  changeRoleSelectEvent(tabla, database, collection);
 });
 
 console.log(database);

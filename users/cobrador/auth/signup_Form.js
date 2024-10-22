@@ -28,7 +28,6 @@ if (signupForm) {
     const unidadInput = document.getElementById("validationCustomUnidad").value;
     const placaInput = document.getElementById("validationCustomPlaca").value;
     const nombreInput = document.getElementById("validationCustomNombre").value;
-    const cedulaInput = document.getElementById("validationCustomCedula").value;
     const whatsappInput = document.getElementById("validationCustomWhatsapp").value;
     const emailInput = document.getElementById("validationCustomEmail").value;
     const passwordInput = document.getElementById("validationCustomPassword").value;
@@ -43,7 +42,6 @@ if (signupForm) {
         unidad: unidadInput,
         placa: placaInput,
         nombre: nombreInput,
-        cedula: cedulaInput,
         whatsapp: whatsappInput,
         email: emailInput,
         userId: user.uid // Guarda el UID del usuario registrado

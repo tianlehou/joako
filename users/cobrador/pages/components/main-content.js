@@ -9,17 +9,15 @@ function loadHTMLmaincontent() {
         <!-- Table - Head -->
         <thead>
           <tr>
-            <th class="text-center">#</th>
-            <th class="text-center">Unidad</th>
-            <th class="text-center display-none">UserID</th>
-            <th class="text-center">Placa</th>
-            <th class="text-center">Nombre</th>
-            <th class="text-center">Cédula</th>
-            <th class="text-center">Whatsapp</th>
-            <th class="text-center">Estado</th>
-            <th class="text-center">Rol</th>
+            <td>#</th>
+            <td>Unidad</th>
+            <th>Placa</th>
+            <th>Nombre, Apellido (Apodo)</th>
+            <th>Whatsapp</th>
+            <th>Estado</th>
+            <th>Rol</th>
             <th>Acciones</th>
-            <th class="text-center">Correo</th>
+            <th>Correo</th>
           </tr>
         </thead>
 

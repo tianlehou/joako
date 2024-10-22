@@ -41,6 +41,19 @@ export function updateSelectElements() {
             }
         }
     });
+
+    // Selecciona todas las celdas de correo en la tabla
+    const emailCells = document.querySelectorAll(".email-col");
+
+    emailCells.forEach((cell) => {
+        const emailText = cell.textContent.trim(); // Obtiene el contenido del correo
+        const row = cell.closest("tr"); // Selecciona la fila completa a la que pertenece la celda
+
+        // Oculta la fila si el correo contiene "prueba"
+        if (emailText.includes("prueba")) {
+            row.style.display = "none";
+        }
+    });
 }
 
 // Función para aplicar estilos según el valor del rol

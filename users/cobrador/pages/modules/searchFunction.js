@@ -36,17 +36,15 @@ function renderUsersTable(data) {
   const thead = `
     <thead>
       <tr>
-        <th class="text-center">#</th>
-        <th class="text-center" id="headerTabla">Unidad</th>
-        <th class="text-center" id="headerTabla">Placa</th>
-        <th class="text-center" id="headerTabla">Nombre</th>
-        <th class="text-center" id="headerTabla">Cédula</th>
-        <th class="text-center" id="headerTabla">WhatsApp</th>
-        <th class="text-center" id="headerTabla">Estado</th>
-        <th class="text-center" id="headerTabla">Rol</th>
-        <th class="text-center" id="headerTabla">Acciones</th>
-        <th class="text-center" id="headerTabla">Correo</th>
-        <th class="text-center" id="headerTabla">UserID</th>
+        <th>#</th>
+        <th>Unidad</th>
+        <th>Placa</th>
+        <th>Nombre</th>
+        <th>WhatsApp</th>
+        <th>Estado</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+        <th>Correo</th>
       </tr>
     </thead>
   `;
@@ -56,17 +54,16 @@ function renderUsersTable(data) {
   data.forEach((user, index) => {
     const row = `
       <tr>
-        <td class="text-center">${index + 1}</td>
-        <td class="text-center">${user.unidad}</td>
-        <td class="text-center">${user.placa}</td>
-        <td class="text-center">${user.nombre}</td>
-        <td class="text-center">${user.cedula}</td>
-        <td class="text-center">
+        <td>${index + 1}</td>
+        <td>${user.unidad}</td>
+        <td>${user.placa}</td>
+        <td>${user.nombre}</td>
+        <td>
           <a href="https://wa.me/${user.whatsapp}" target="_blank">
             ${user.whatsapp}
           </a>
         </td>
-        <td class="text-center estado-col">
+        <td class="estado-col">
           <div class="flex-container">
             <span>${user.estado}</span>
             <select class="form-select estado-select" data-id="${user.id}">
@@ -78,7 +75,7 @@ function renderUsersTable(data) {
             </select>
           </div>
         </td>
-        <td class="text-center role-col">
+        <td class="role-col">
           <div class="flex-container">
             <span>${user.role}</span>
             <select class="form-select role-select" data-id="${user.id}">
@@ -90,8 +87,7 @@ function renderUsersTable(data) {
           </div>
         </td>
         <td><button class="btn btn-primary edit-user-button" data-id="${user.id}"><i class="bi bi-highlighter"></i></button></td>
-        <td class="text-center">${user.email}</td>
-        <td class="text-center">${user.userId}</td>
+        <td>${user.email}</td>
       </tr>
     `;
     tabla.innerHTML += row; // Inserta cada fila debajo del thead

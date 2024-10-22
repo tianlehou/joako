@@ -13,7 +13,6 @@ const editForm = document.getElementById("editForm");
 const editUnidad = document.getElementById("editUnidad");
 const editPlaca = document.getElementById("editPlaca");
 const editNombre = document.getElementById("editNombre");
-const editCedula = document.getElementById("editCedula");
 const editWhatsapp = document.getElementById("editWhatsapp");
 
 let currentUserId = null; // Variable para almacenar el ID del usuario actual
@@ -45,8 +44,7 @@ function handleEdit(event) {
   editUnidad.value = userRow.children[1].textContent;
   editPlaca.value = userRow.children[2].textContent;
   editNombre.value = userRow.children[3].textContent;
-  editCedula.value = userRow.children[4].textContent;
-  editWhatsapp.value = userRow.children[5].textContent;
+  editWhatsapp.value = userRow.children[4].textContent;
 
   // Abre el modal
   editModal.style.display = "block";
@@ -63,7 +61,6 @@ saveEditButton.addEventListener("click", function() {
   const unidad = editUnidad.value;
   const placa = editPlaca.value;
   const nombre = editNombre.value;
-  const cedula = editCedula.value;
   const whatsapp = editWhatsapp.value;
 
   // Asegúrate de que los campos esenciales no estén vacíos
@@ -76,7 +73,7 @@ saveEditButton.addEventListener("click", function() {
   const confirmar = confirm("¿Estás seguro de que deseas actualizar este usuario?");
   
   if (confirmar) {
-    const updates = { unidad, placa, nombre, cedula, whatsapp };
+    const updates = { unidad, placa, nombre, whatsapp };
 
     // Actualiza los datos en Firebase
     update(ref(database, `${collection}/${currentUserId}`), updates)

@@ -7,7 +7,7 @@ import { checkUserAccess } from "../../../modules/accessControl/roleAccessContro
 import { includeHTML } from "../components/includeHTML/includeHTML.js";
 import { updateSelectElements } from "./modules/updateSelectElements.js";
 import { getMonthAndYearFromURL, generateCalendarDays } from "./modules/calendarUtils.js";
-import { filtrarDatosPorUsuarioAutenticado } from "./modules/tabla/filterData/filterDataByUID.js";
+import { filtrarDatosPorUsuarioAutenticado } from "./modules/tabla/filterByAuthUser.js";
 
 // Lee la variable collection desde el HTML
 export const collection = (() => {

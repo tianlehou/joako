@@ -24,7 +24,7 @@ a:hover {
 
 .table {
     border-collapse: collapse;
-    table-layout: fixed;
+    table-layout: auto;
 }
 
 .flex-container {
@@ -54,65 +54,9 @@ a:hover {
     /* Añade una sombra para distinguirlo mejor */
 }
 
-.role-select,
-.estado-select,
-.pay-select {
+.role-select, .estado-select, .pay-select {
     width: 10px;
-}
-
-table td:nth-child(1),
-table th:nth-child(1) {
-    width: 50px;
-}
-
-table td:nth-child(2),
-table th:nth-child(2) {
-    width: 150px;
-}
-
-table td:nth-child(3),
-table th:nth-child(3) {
-    width: 150px;
-}
-
-table td:nth-child(4),
-table th:nth-child(4) {
-    width: 150px;
-}
-
-table td:nth-child(5),
-table th:nth-child(5) {
-    width: 160px;
-}
-
-table td:nth-child(6),
-table th:nth-child(6) {
-    width: 160px;
-}
-
-table td:nth-child(7),
-table th:nth-child(7) {
-    width: 175px;
-}
-
-table td:nth-child(8),
-table th:nth-child(8) {
-    width: 200px;
-}
-
-table td:nth-child(9),
-table th:nth-child(9) {
-    width: 175px;
-}
-
-table td:nth-child(10),
-table th:nth-child(10) {
-    width: 250px;
-}
-
-table td:nth-child(11),
-table th:nth-child(11) {
-    width: 300px;
+    margin-left: 5px;
 }
 
 th,
@@ -121,6 +65,7 @@ td {
     padding: 8px;
     color: #666;
     text-align: center;
+    white-space: nowrap; 
 }
 
 th {

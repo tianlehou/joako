@@ -8,10 +8,41 @@ import { filterDataByRole } from "./modules/tabla/filterData/filterDataByRole.js
 import { includeHTML } from '../components/includeHTML/includeHTML.js';
 import { changeEstadoSelectEvent } from "./modules/tabla/changeSelectEvent.js";
 import { updateSelectElements } from "./modules/tabla/updateSelectElements.js";
-import { filtrarDatosPorUsuarioAutenticado } from "./modules/tabla/filterData/filterDataByUID.js";  // Importa la función para filtrar por UID
+import { filtrarDatosPorUsuarioAutenticado } from "./modules/tabla/filterData/filterDataByUID.js"; // Importa la función para filtrar por UID
 
 // Constantes y variables de estado
 const tabla = document.getElementById("contenidoTabla");
+
+// Función para generar filas de usuarios
+function generarFilaUsuario(user, filaNumero, mostrarSelect = true) {
+  return `
+    <tr>
+      <td class="text-center">${filaNumero}</td>
+      <td class="text-center">${user.unidad}</td>
+      <td class="text-center">${user.nombre}</td>
+      <td class="text-center">
+        <a href="https://wa.me/${user.whatsapp}" target="_blank">
+          ${user.whatsapp}
+        </a>
+      </td>
+      <td class="text-center role-col">
+        <div class="text-center">
+          <span>${user.role}</span>
+        </div>
+      </td>
+      <td class="text-center estado-col">
+        <div class="flex-container text-center">
+          <span class="text-center">${user.estado}</span>
+          <select data-id="${user.id}" class="form-select estado-select" style="${mostrarSelect ? "" : "display: none;"}">
+            <option value="Ninguno" ${user.estado === "Ninguno" ? "selected" : ""}>Ninguno</option>
+            <option value="Activo" ${user.estado === "Activo" ? "selected" : ""}>Activo</option>
+            <option value="Sin carro" ${user.estado === "Sin carro" ? "selected" : ""}>Sin carro</option>
+          </select>
+        </div>
+      </td>
+    </tr>
+  `;
+}
 
 export function mostrarDatos() {
   onValue(ref(database, collection), async (snapshot) => {
@@ -36,77 +67,15 @@ export function mostrarDatos() {
 
     let filaNumero = 1;
 
-    // Mostrar el usuario autenticado en la primera fila
+    // Mostrar el usuario autenticado en la primera fila, si existe
     if (usuarioAutenticadoData.length > 0) {
-      const user = usuarioAutenticadoData[0];
-      const row = `
-            <tr>
-              <td class="text-center">${filaNumero++}</td>
-              <td class="text-center">${user.unidad}</td>
-              <td class="text-center">${user.nombre}</td>
-
-              <td class="text-center role-col">
-                <div class="text-center">
-                  <span>${user.role}</span>
-                </div>
-              </td>
-
-              <td class="text-center estado-col">
-                <div class="flex-container text-center">
-                  <span class="text-center">${user.estado}</span>
-                  <select data-id="${user.id}" class="form-select estado-select">
-                    <option value="Ninguno" ${user.estado === "Ninguno" ? "selected" : ""}>Ninguno</option>
-                    <option value="Activo" ${user.estado === "Activo" ? "selected" : ""}>Activo</option>
-                    <option value="Sin carro" ${user.estado === "Sin carro" ? "selected" : ""}>Sin carro</option>
-                  </select>
-                </div>
-              </td>
-              
-              <td class="text-center">
-                <a href="https://wa.me/${user.whatsapp}" target="_blank">
-                  ${user.whatsapp}
-                </a>
-              </td>
-            </tr>
-          `;
-      tabla.innerHTML += row;
+      tabla.innerHTML += generarFilaUsuario(usuarioAutenticadoData[0], filaNumero++, true);
     }
 
-    // Mostrar los demás usuarios sin mostrar sus select
-    for (let i = 0; i < otherUsersData.length; i++) {
-      const user = otherUsersData[i];
-      const row = `
-            <tr>
-              <td class="text-center">${filaNumero++}</td>
-              <td class="text-center">${user.unidad}</td>
-              <td class="text-center">${user.nombre}</td>
-              
-              <td class="text-center role-col">
-                <div class="text-center">
-                  <span>${user.role}</span>
-                </div>
-              </td>
-
-              <td class="text-center estado-col">
-                <div class="flex-container text-center">
-                  <span class="text-center">${user.estado}</span>
-                  <select data-id="${user.id}" class="form-select estado-select" style="display: none;">
-                    <option value="Ninguno" ${user.estado === "Ninguno" ? "selected" : ""}>Ninguno</option>
-                    <option value="Activo" ${user.estado === "Activo" ? "selected" : ""}>Activo</option>
-                    <option value="Sin carro" ${user.estado === "Sin carro" ? "selected" : ""}>Sin carro</option>
-                  </select>
-                </div>
-              </td>
-              
-              <td class="text-center">
-                <a href="https://wa.me/${user.whatsapp}" target="_blank">
-                  ${user.whatsapp}
-                </a>
-              </td>
-            </tr>
-          `;
-      tabla.innerHTML += row;
-    }
+    // Mostrar los demás usuarios sin mostrar el select
+    otherUsersData.forEach(user => {
+      tabla.innerHTML += generarFilaUsuario(user, filaNumero++, false);
+    });
 
     // Actualiza los elementos select después de cargar la tabla
     updateSelectElements();

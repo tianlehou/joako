@@ -12,9 +12,9 @@ function loadHTMLmaincontent() {
             <th class="text-center">#</th>
             <th class="text-center">Unidad</th>
             <th class="text-center">Nombre, Apellido (Apodo)</th>
+            <th class="text-center">Whatsapp</th>
             <th class="text-center">Rol</th>
             <th class="text-center">Estado</th>
-            <th class="text-center">Whatsapp</th>
           </tr>
         </thead>
 

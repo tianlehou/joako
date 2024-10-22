@@ -11,32 +11,23 @@
 <body>
   <!-- Modular Nav-Header -->
   <div id="nav-header-container"></div>
-  <script defer type="module" src="../components/nav-header/nav-header.js"></script>
+  <script defer type="module" src="../../../components/nav-header/nav-header.js"></script>
 
   <!-- Modular Rules Section -->
   <div data-include-html="../components/includeHTML/rules.html"></div>
 
   <!-- Middle Section -->
-  <section class="display-center">
-    <div id="middleSection" class="display-center">
-      <div class="display-flex-center">
-        <h1>Librería de Personal</h1>
-      </div>
-    </div>
-  </section>
+  <div id="middle-section-container"></div>
+  <script src="../../../components/middle-section-pagos/middle-section.js"></script>
 
   <!-- Modular - Months Section -->
   <div id="month-buttons-container"></div>
-  <script src="./components/month-buttons.js"></script>
+  <script src="../../../components/month-buttons/month-buttons.js"></script>
 
   <!-- Modular - Main Content -->
   <div id="main-content-pages-02-container"></div>
   <script src="./components/main-content-pages-02.js" defer type="module"></script>
 
-  <!-- Footer -->
-  <footer class="display-flex-center">
-    <p>©2024 Cloud Service</p>
-  </footer>
 
   <!-- Bootstrap & Pooper Script -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -45,9 +36,14 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
     integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
     crossorigin="anonymous"></script>
-    
+
   <!-- Main Script -->
   <script src="./script-pages-02.js" defer type="module"></script>
 </body>
+
+<!-- Footer -->
+<footer class="display-flex-center">
+  <p>©2024 Cloud Service</p>
+</footer>
 
 </html>

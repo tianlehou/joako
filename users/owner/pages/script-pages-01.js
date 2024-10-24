@@ -4,7 +4,7 @@ import { database } from "../../../environment/firebaseConfig.js";
 import { checkAuth } from "../../../modules/accessControl/authCheck.js";
 import { getUserRole } from "../../../modules/accessControl/getUserRole.js";
 import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
-import { filterDataByRole } from "../../../../modules/tabla/filterData/filterDataByRole.js";
+import { filterDataByRole } from "../../../modules/tabla/filterData/filterDataByRole.js";
 
 import { includeHTML } from "../components/includeHTML/includeHTML.js";
 import { updateSelectElements } from "./modules/tabla/updateSelectElements.js";

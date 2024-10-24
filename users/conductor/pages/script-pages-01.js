@@ -3,7 +3,7 @@ import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebas
 
 import { checkAuth } from '../../../modules/accessControl/authCheck.js';
 import { getUserRole } from "../../../modules/accessControl/getUserRole.js";
-import { filterDataByRole } from "./modules/tabla/filterData/filterDataByRole.js";
+import { filterDataByRole } from "../../../modules/tabla/filterData/filterDataByRole.js";
 import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
 
 import { includeHTML } from '../components/includeHTML/includeHTML.js';

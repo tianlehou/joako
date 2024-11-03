@@ -1,0 +1,54 @@
+.table {
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.role-select, .estado-select, .pay-select {
+    width: 10px;
+    margin-left: 5px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    color: #666;
+    text-align: center;
+    white-space: nowrap; 
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: 500;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: dodgerblue;
+}
+
+a:hover {
+    color: #ff9900;
+}
+
+.sticky-col-1 {
+    position: sticky;
+    left: 0;
+    background-color: white;
+    z-index: 2;
+    border-right: 1px solid #ddd;
+  }
+  
+  .sticky-col-2 {
+    position: sticky;
+    left: 37px; 
+    background-color: white;
+    z-index: 2;
+    border-right: 1px solid #ddd;
+  }

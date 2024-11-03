@@ -1,0 +1,52 @@
+<!-- month-buttons.html -->
+<section class="month-buttons display-center">
+  <div class="display-flex-center display-none" id="adminButtonContainer">
+    <a class="button" href="#" data-collection="cobros-de-zarpe-00" id="adminButton">00</a>
+  </div>
+  <div class="display-flex-center">
+    <a class="button" href="#" data-collection="cobros-de-zarpe-01">Ene</a>
+    <a class="button" href="#" data-collection="cobros-de-zarpe-02">Feb</a>
+    <a class="button" href="#" data-collection="cobros-de-zarpe-03">Mar</a>
+    <a class="button" href="#" data-collection="cobros-de-zarpe-04">Abr</a>
+    <a class="button" href="#" data-collection="cobros-de-zarpe-05">May</a>
+    <a class="button" href="#" data-collection="cobros-de-zarpe-06">Jun</a>
+  </div>
+  <div class="display-flex-center">
+    <a class="button" href="#" data-collection="cobros-de-zarpe-07">Jul</a>
+    <a class="button" href="#" data-collection="cobros-de-zarpe-08">Ago</a>
+    <a class="button" href="#" data-collection="cobros-de-zarpe-09">Sep</a>
+    <a class="button" href="#" data-collection="cobros-de-zarpe-10">Oct</a>
+    <a class="button" href="#" data-collection="cobros-de-zarpe-11">Nov</a>
+    <a class="button" href="#" data-collection="cobros-de-zarpe-12">Dic</a>
+  </div>
+</section>
+
+<style>
+  .month-buttons {
+    margin-top: 0;
+    padding: 0.5em;
+  }
+
+  .month-buttons .button {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    margin: 3px;
+    padding: 0px;
+    background-color: #999;
+    font-weight: 500;
+  }
+
+  .month-buttons .button:hover {
+    background-color: var(--clr-secondary);
+  }
+
+  .month-buttons .button.active {
+    background-color: var(--clr-secondary);
+    color: white;
+  }
+</style>

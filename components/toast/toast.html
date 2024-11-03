@@ -1,0 +1,29 @@
+<!-- toast.html -->
+<div class="toast-container-center" id="toastContainer">
+  <div id="updateToast" class="toast text-white" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-body">
+      <span>Se ha actualizado correctamente.</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Agrega este CSS en el archivo de estilos de tu proyecto */
+.toast-container-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1050; /* Asegura que esté sobre otros elementos */
+}
+
+#updateToast {
+  background-color: var(--clr-secondary); /* Verde suave */
+  border-radius: 8px;
+  padding: 1rem;
+}
+.toast-body {
+  font-weight: 500;
+  font-size: 1.2em;
+}
+</style>

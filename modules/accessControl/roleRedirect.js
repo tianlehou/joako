@@ -16,11 +16,11 @@ const baseUrl = window.location.origin.includes("github.io") ? "/joako" : "";
 
 // Mapeo de roles de usuario a sus respectivas páginas para redirección
 const rolePages = {
-  Desarrollador: `${baseUrl}/users/dev/pages/biblioteca.html`,
-  Administrador: `${baseUrl}/users/admin/pages/biblioteca.html`,
-  Cobrador: `${baseUrl}/users/cobrador/pages/biblioteca.html`,
-  Propietario: `${baseUrl}/users/owner/pages/biblioteca.html`,
-  Conductor: `${baseUrl}/users/conductor/pages/biblioteca.html`,
+  Desarrollador: `${baseUrl}/users/dev/pages-02/month-01.html`,
+  Administrador: `${baseUrl}/users/admin/pages-02/month-01.html`,
+  Cobrador: `${baseUrl}/users/cobrador/pages-02/month-01.html`,
+  Propietario: `${baseUrl}/users/owner/pages-02/month-01.html`,
+  Conductor: `${baseUrl}/users/conductor/pages-02/month-01.html`,
 };
 
 // Función para detectar el rol del usuario y redirigirlo a la página correspondiente

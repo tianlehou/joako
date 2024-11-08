@@ -1,3 +1,5 @@
+// calendarUtils.js
+
 // Función para obtener la cantidad de días en un mes específico
 export function getDaysInMonth(month, year) {
     return new Date(year, month, 0).getDate();

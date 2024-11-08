@@ -3,12 +3,24 @@ export function getDaysInMonth(month, year) {
   return new Date(year, month, 0).getDate();
 }
 
-// Función para obtener el mes y año a partir de la URL
-export function getMonthAndYearFromURL() {
-  const url = window.location.href;
-  const month = parseInt(url.split('/month-')[1].split('.html')[0], 10);
-  const year = new Date().getFullYear(); // Puedes ajustar el año según sea necesario
-  return { month, year };
+// Función para extraer el mes y el año de la colección
+export function getMonthAndYearFromDataCollection(collection) {
+    if (!collection) return { month: 0, year: new Date().getFullYear() };
+    const month = parseInt(collection.split("-").pop(), 10);
+    const year = new Date().getFullYear();
+    return { month, year };
+}
+
+// Función para generar encabezados de calendario en función del mes y año
+export function generateCalendarHeaders(month, year) {
+    const daysInMonth = getDaysInMonth(month, year);
+    let headers = '';
+
+    // Generar <th> para cada día del mes
+    for (let i = 1; i <= daysInMonth; i++) {
+        headers += `<th class="text-center">${i}</th>`;
+    }
+    return headers;
 }
 
 // Genera las columnas del calendario basadas en la cantidad de días en el mes

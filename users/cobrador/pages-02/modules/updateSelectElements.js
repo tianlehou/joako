@@ -66,10 +66,6 @@ export async function updateSelectElements(database, collection) {
                 await update(ref(database, `${collection}/${userId}`), updateData);
                 updateCellAppearance(event.target, selectedValue, timestamp, currentUserName);
 
-                // Remueve el select si el valor coincide con los valores especificados
-                if (["6.00", "10.00", "11.00", "24.00"].includes(selectedValue)) {
-                    event.target.remove();
-                }
             } catch (error) {
                 console.error("Error al actualizar en Firebase:", error);
                 event.target.value = originalValue;
@@ -89,7 +85,7 @@ function applyStyles(cobroElement, selectedValue) {
 }
 
 // Función para actualizar visualmente el select
-function updateCellAppearance(selectElement, selectedValue, timestamp, currentUserName) {
+function updateCellAppearance(selectElement, selectedValue) {
     const tdElement = selectElement.closest('td');
     let displayElement = tdElement.querySelector('.display-values');
 

@@ -1,3 +1,5 @@
+// script-pages-02.js
+
 import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 import { database } from "../../../environment/firebaseConfig.js";
 
@@ -10,20 +12,18 @@ import "./modules/downloadToExcel.js";
 import { addEditEventListeners } from "./modules/editRow.js";
 import { handleFileUpload } from "../modules/Excel/uploadExcelHandler.js";
 
-import { updateTotalSums } from "./modules/sumColumns.js";
 import { initializeSearch } from "./modules/searchFunction.js";
 import { initScrollButtons } from "../modules/scrollButtons.js";
 import { includeHTML } from "../components/includeHTML/includeHTML.js";
 import { updateSelectElements } from "./modules/updateSelectElements.js";
-import { getDaysInMonth, generateCalendarDays, getMonthAndYearFromURL } from "./modules/calendarUtils.js";
+import { getMonthAndYearFromDataCollection, generateCalendarHeaders, generateCalendarDays } from "./modules/calendarUtils.js";
 
-// Definir variable global para almacenar la colección
-export let collection = null; 
+export let collection = null;
 
-// Función para definir automáticamente la colección en función del mes actual
+// Asigna automáticamente la colección en función del mes actual
 export function setCollectionByCurrentMonth() {
-    const month = new Date().getMonth() + 1; // Obtener mes actual (1-12)
-    collection = `cobros-de-zarpe-${month.toString().padStart(2, '0')}`; // Asigna colección basada en el mes
+    const month = new Date().getMonth() + 1;
+    collection = `cobros-de-zarpe-${month.toString().padStart(2, '0')}`;
     console.log("Colección asignada automáticamente:", collection);
 }
 
@@ -36,20 +36,31 @@ export function updateCollection(value) {
 // Función para mostrar los datos en la tabla
 export function mostrarDatos() {
     const tabla = document.getElementById("contenidoTabla");
-    if (!tabla) {
-        console.error("Elemento 'contenidoTabla' no encontrado.");
+    const thead = document.querySelector("#miTabla thead tr");
+    if (!tabla || !thead) {
+        console.error("Elemento 'contenidoTabla' o 'thead' no encontrado.");
         return;
     }
 
     if (!collection) {
-        console.error("La colección no está definida. Selecciona una colección válida.");
+        console.error("La colección no está definida.");
         return;
     }
 
-    const { month, year } = getMonthAndYearFromURL();
+    const { month, year } = getMonthAndYearFromDataCollection(collection);
+
+    // Generar encabezado dinámico
+    thead.innerHTML = `
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Conductor</th>
+        <th>Propietario</th>
+        <th>Acciones</th>
+        ${generateCalendarHeaders(month, year)}
+    `;
 
     onValue(ref(database, collection), (snapshot) => {
-        tabla.innerHTML = "";
+        tabla.innerHTML = ""; // Limpia la tabla
 
         const data = [];
         snapshot.forEach((childSnapshot) => {
@@ -78,24 +89,19 @@ export function mostrarDatos() {
 
         updateSelectElements(database, collection);
         addEditEventListeners(database, collection);
-        updateTotalSums(
-            tabla, Array.from({ length: getDaysInMonth(month, year) }, (_, i) => i + 5)
-        );
     });
 }
 
-// Inicialización al cargar el documento
 document.addEventListener('DOMContentLoaded', async () => {
     setCollectionByCurrentMonth();
     checkAuth();
     checkUserAccess();
-  
-    // Verifica el rol del usuario autenticado
+
     try {
-      const role = await getUserRole();
-      console.log("Rol del usuario autenticado:", role);
+        const role = await getUserRole();
+        console.log("Rol del usuario autenticado:", role);
     } catch (error) {
-      console.error("Error al obtener el rol del usuario:", error);
+        console.error("Error al obtener el rol del usuario:", error);
     }
 
     includeHTML();

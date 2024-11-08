@@ -60,11 +60,6 @@ export function updateSelectElements(database, collection) {
                     // Actualizar solo la vista visual con la fecha y hora en dos líneas
                     updateCellAppearance(event.target, selectedValue, timestamp);
 
-                    // Si el valor es..., eliminar el select
-                    const removableValues = ["6.00", "10.00", "11.00", "24.00"];
-                    if (removableValues.includes(selectedValue)) {
-                        event.target.remove();  // Elimina el select después de actualizar
-                    }
                 })
                 .catch((error) => {
                     console.error("Error al actualizar en Firebase: ", error);

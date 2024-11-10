@@ -1,5 +1,5 @@
 import { getUserRole } from "../../modules/accessControl/getUserRole.js";
-import { collection } from "../../users/owner/pages-02/script-pages-02.js";
+import { collection } from "../../modules/collection/collectionHandler.js";
 
 function loadMonthButtons(updateCollection, mostrarDatos, userRole) {
     fetch("../../../components/month-buttons/month-buttons.html")
@@ -14,9 +14,14 @@ function renderButtons(data, updateCollection, mostrarDatos, userRole) {
         container.innerHTML = data;
         const buttons = container.querySelectorAll(".month-buttons .button");
 
-        // Activar solo el botón correspondiente a la colección actual
+        // Obtener el nombre de la colección del mes actual
+        const currentMonthCollection = getCurrentMonthCollection();
+
+        // Activar el botón correspondiente al mes actual
         buttons.forEach(button => {
-            button.classList.toggle("active", button.getAttribute("data-collection") === collection);
+            const buttonCollection = button.getAttribute("data-collection");
+            // Activar solo el botón correspondiente al mes actual
+            button.classList.toggle("active", buttonCollection === currentMonthCollection);
         });
 
         // Mostrar el botón según el rol del usuario
@@ -24,6 +29,13 @@ function renderButtons(data, updateCollection, mostrarDatos, userRole) {
 
         addClickEventToButtons(buttons, updateCollection, mostrarDatos);
     }
+}
+
+// Función para obtener la colección del mes actual
+function getCurrentMonthCollection() {
+    const currentDate = new Date();
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Obtener mes actual en formato 01, 02, etc.
+    return `cobros-de-zarpe-${month}`; // Ajustar según el formato de tus colecciones
 }
 
 function addClickEventToButtons(buttons, updateCollection, mostrarDatos) {

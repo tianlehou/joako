@@ -1,25 +1,17 @@
 // main-content-pages-02.js
-import { getMonthAndYearFromURL, getDaysInMonth } from "../modules/calendarUtils.js";
-// Esta función genera los encabezados de los días del mes.
-function generateCalendarHeaders() {
-  const { month, year } = getMonthAndYearFromURL(); // Asegúrate de tener esta función disponible para obtener el mes y año
-  const daysInMonth = getDaysInMonth(month, year); // Asegúrate de tener esta función disponible para obtener la cantidad de días en el mes
-  let headers = '';
-  for (let i = 1; i <= daysInMonth; i++) {
-      headers += `<th class="text-center">${i}</th>`;
-  }
-  headers += ``; // Añade las columnas adicionales necesarias
-  return headers;
-}
+
+import { generateCalendarHeaders, getMonthAndYearFromDataCollection } from "../modules/calendarUtils.js";
+import { collection } from "../script-pages-02.js"; // Importa la colección actual
 
 function loadHTMLmaincontent() {
+  // Obtener mes y año a partir de la colección
+  const { month, year } = getMonthAndYearFromDataCollection(collection);
+
   const bodyContent = `
   <!-- Main Content -->
   <main class="main-content">
-    <!-- Main Content - Container -->
     <div class="main-container">
       <table id="miTabla" class="table table-striped">
-        <!-- Table - Head -->
         <thead>
           <tr>
             <th>#</th>
@@ -27,13 +19,13 @@ function loadHTMLmaincontent() {
             <th>Conductor</th>
             <th>Propietario</th>
             <th>Acciones</th>
-            ${generateCalendarHeaders()}
+            ${generateCalendarHeaders(month, year)} <!-- Pasar mes y año como argumentos -->
           </tr>
         </thead>
 
-        <!--  Dinamic Table - Body -->
+        <!-- Dinamic Table -->
         <tbody class="table-body" id="contenidoTabla">
-          <!-- aqui va el contenido de la tabla -->
+          <!-- aquí va el contenido de la tabla -->
         </tbody>
       </table>
     </div>
@@ -45,5 +37,5 @@ function loadHTMLmaincontent() {
   document.getElementById('main-content-pages-02-container').appendChild(bodyElement);
 }
 
-// Ejecutar la función para cargar el contenido del head
+// Ejecutar la función para cargar el contenido del main content
 loadHTMLmaincontent();

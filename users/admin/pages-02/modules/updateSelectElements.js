@@ -60,11 +60,6 @@ export function updateSelectElements(database, collection) {
                     // Actualizar solo la vista visual con la fecha y hora en dos líneas
                     updateCellAppearance(event.target, selectedValue, timestamp);
 
-                    // Si el valor es..., eliminar el select
-                    const removableValues = ["6.00", "10.00", "11.00", "24.00"];
-                    if (removableValues.includes(selectedValue)) {
-                        event.target.remove();  // Elimina el select después de actualizar
-                    }
                 })
                 .catch((error) => {
                     console.error("Error al actualizar en Firebase: ", error);
@@ -80,7 +75,7 @@ export function updateSelectElements(database, collection) {
 
 // Función para aplicar estilos según el valor de Cobro
 function applyStyles(cobroElement, selectedValue) {
-    if (["6.00", "10.00", "11.00", "24.00"].includes(selectedValue)) {
+    if (["3.00", "6.00", "10.00", "11.00", "21.00", "24.00"].includes(selectedValue)) {
         cobroElement.style.color = "var(--clr-primary)";
         cobroElement.style.fontWeight = "500";
         cobroElement.style.fontSize = "1.33em";

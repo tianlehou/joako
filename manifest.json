@@ -1,7 +1,7 @@
 {
   "name": "Joako App",
   "short_name": "Joako App",
-  "start_url": "https://tianlehou.github.io/joako-prueba/login.html",
+  "start_url": "https://tianlehou.github.io/joako/login.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",

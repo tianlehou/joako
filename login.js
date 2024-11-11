@@ -1,6 +1,7 @@
 import "./auth/signin_Form.js";
 import "./auth/forgot_password.js"
 import "./auth/showHidePassword/showHidePassword.js";
+import { setupInstallPrompt } from './modules/installPrompt.js';
 
 // Textos que se mostrarán en el carrusel
 const texts = [
@@ -27,4 +28,4 @@ const texts = [
   
   // Cambia el texto la primera vez al cargar la página
   changeText();
-  
+  setupInstallPrompt('installButton');

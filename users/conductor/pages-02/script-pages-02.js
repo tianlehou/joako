@@ -1,17 +1,16 @@
 import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 import { database } from "../../../environment/firebaseConfig.js";
 
-import { checkAuth } from '../../../modules/accessControl/authCheck.js';
 import { getUserRole } from "../../../modules/accessControl/getUserRole.js";
 import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
 import { filterDataByAuthenticatedUser } from "../../../modules/tabla/filterData/filterByAuthUser.js";
 
-import { includeHTML } from "../components/includeHTML/includeHTML.js";
+import { includeHTML } from "./components/includeHTML/includeHTML.js";
 import { updateSelectElements } from "./modules/updateSelectElements.js";
-import { getMonthAndYearFromURL, generateCalendarDays } from "./modules/calendarUtils.js";
+import { getMonthAndYearFromDataCollection, generateCalendarHeaders, generateCalendarDays } from "./modules/calendarUtils.js";
 
 // Definir variable global para almacenar la colección
-export let collection = null; 
+export let collection = null;
 
 // Función para definir automáticamente la colección en función del mes actual
 export function setCollectionByCurrentMonth() {
@@ -29,8 +28,9 @@ export function updateCollection(value) {
 // Función para mostrar los datos en la tabla
 export function mostrarDatos() {
     const tabla = document.getElementById("contenidoTabla");
-    if (!tabla) {
-        console.error("Elemento 'contenidoTabla' no encontrado.");
+    const thead = document.querySelector("#miTabla thead tr");
+    if (!tabla || !thead) {
+        console.error("Elemento 'contenidoTabla' o 'thead' no encontrado.");
         return;
     }
 
@@ -39,7 +39,14 @@ export function mostrarDatos() {
         return;
     }
 
-    const { month, year } = getMonthAndYearFromURL();
+    const { month, year } = getMonthAndYearFromDataCollection(collection);
+
+    // Generar encabezado dinámico
+    thead.innerHTML = `
+        <th>#</th>
+        <th>Nombre</th>
+        ${generateCalendarHeaders(month, year)}
+    `;
 
     // Escuchar los cambios en la base de datos
     onValue(ref(database, collection), (snapshot) => {
@@ -80,17 +87,16 @@ export function mostrarDatos() {
 // Inicializa la tabla y eventos al cargar el documento
 document.addEventListener('DOMContentLoaded', async () => {
     setCollectionByCurrentMonth();
-    checkAuth();
     checkUserAccess();
-  
+
     // Verifica el rol del usuario autenticado
     try {
-      const role = await getUserRole();
-      console.log("Rol del usuario autenticado:", role);
+        const role = await getUserRole();
+        console.log("Rol del usuario autenticado:", role);
     } catch (error) {
-      console.error("Error al obtener el rol del usuario:", error);
+        console.error("Error al obtener el rol del usuario:", error);
     }
-  
+
     includeHTML();
     mostrarDatos();
 });

@@ -1,9 +1,9 @@
 :root {
     --clr-primary: #4a90e2;
-    --clr-secondary: #7ed321;
+    --clr-secondary: #a8d5ba;
     --clr-bg-dark: #121212;
     --clr-bg-light: #1e1e1e;
-    --clr-text: #e0e0e0;
+    --clr-text:  rgba(51, 65, 85, 1);
     --clr-error: #ff4f4f;
     --clr-success: #4cff4c;
     --clr-neon-blue: #4a90e2;

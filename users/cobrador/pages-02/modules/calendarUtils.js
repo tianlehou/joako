@@ -36,10 +36,10 @@ export function generateCalendarDays(month, year, user) {
         const cobrador = user[dia]?.cobrador || "";
 
         return `
-            <td class="${["6.00", "10.00", "11.00", "24.00"].includes(cobro) ? "text-center" : ""}">
+            <td>
                 <div class="flex-container display-center">
-                    <select class="form-select pay-select ${["3.00", "6.00", "10.00", "11.00", "21.00", "24.00"].includes(cobro) ? "d-none" : ""}" data-id="${user.id}" data-field="${dia}">
-                        ${["", "3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "No Pagó"]
+                    <select class="form-select pay-select ${["3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "Libre", "Feriado"].includes(cobro) ? "d-none" : ""}" data-id="${user.id}" data-field="${dia}">
+                        ${["", "3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "No Pagó", "Libre", "Feriado"]
                             .map(option => `<option value="${option}" ${cobro === option ? "selected" : ""}>${option}</option>`)
                             .join("")}
                     </select>

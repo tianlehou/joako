@@ -44,10 +44,10 @@ export function generateCalendarDays(month, year, user) {
     return `
       <td>
         <div class="flex-container display-center">
-          <select class="form-select pay-select ${["", "3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "No Pagó"].includes(cobro) ? "d-none" : ""}" 
+          <select class="form-select pay-select ${["", "3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "No Pagó", "Libre", "Feriado"].includes(cobro) ? "d-none" : ""}" 
             data-id="${user.id}" 
             data-field="${day}">
-            ${["", "3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "No Pagó"]
+            ${["", "3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "No Pagó", "Libre", "Feriado"]
               .map(option => `<option value="${option}" ${cobro === option ? "selected" : ""}>${option}</option>`)
               .join("")}
           </select>

@@ -75,13 +75,9 @@ export function updateSelectElements(database, collection) {
 
 // Función para aplicar estilos según el valor de Cobro
 function applyStyles(cobroElement, selectedValue) {
-    if (["3.00", "6.00", "10.00", "11.00", "21.00", "24.00"].includes(selectedValue)) {
-        cobroElement.style.color = "var(--clr-primary)";
-        cobroElement.style.fontWeight = "500";
-        cobroElement.style.fontSize = "1.33em";
-    } else if (selectedValue === "No Pagó") {
-        cobroElement.style.color = "var(--clr-error)";
-    }
+    cobroElement.style.color = selectedValue === "No Pagó" ? "var(--clr-error)" : "var(--clr-primary)";
+    cobroElement.style.fontWeight = "500";
+    cobroElement.style.fontSize = "1.33em";
 }
 
 // Función para actualizar visualmente el select y la celda correspondiente

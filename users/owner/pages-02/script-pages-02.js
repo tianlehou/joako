@@ -8,7 +8,7 @@ import { filterDataByAuthenticatedUser } from "../../../modules/tabla/filterData
 
 import { includeHTML } from "../components/includeHTML/includeHTML.js";
 import { updateSelectElements } from "./modules/updateSelectElements.js";
-import { getMonthAndYearFromURL, generateCalendarDays } from "./modules/calendarUtils.js";
+import { getMonthAndYearFromDataCollection, generateCalendarHeaders, generateCalendarDays } from "./modules/calendarUtils.js";
 
 // Definir variable global para almacenar la colección
 export let collection = null; 
@@ -29,17 +29,25 @@ export function updateCollection(value) {
 // Función para mostrar los datos en la tabla
 export function mostrarDatos() {
     const tabla = document.getElementById("contenidoTabla");
-    if (!tabla) {
-        console.error("Elemento 'contenidoTabla' no encontrado.");
+    const thead = document.querySelector("#miTabla thead tr");
+    if (!tabla || !thead) {
+        console.error("Elemento 'contenidoTabla' o 'thead' no encontrado.");
         return;
     }
 
     if (!collection) {
-        console.error("La colección no está definida. Selecciona una colección válida.");
+        console.error("La colección no está definida.");
         return;
     }
 
-    const { month, year } = getMonthAndYearFromURL();
+    const { month, year } = getMonthAndYearFromDataCollection(collection);
+
+    // Generar encabezado dinámico
+    thead.innerHTML = `
+        <th>#</th>
+        <th>Nombre</th>
+        ${generateCalendarHeaders(month, year)}
+    `;
 
     // Escuchar los cambios en la base de datos
     onValue(ref(database, collection), (snapshot) => {

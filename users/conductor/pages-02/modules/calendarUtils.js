@@ -1,4 +1,5 @@
 // calendarUtils.js
+import { applyStyles } from "./updateSelectElements.js"; // Importa la función applyStyles
 
 // ==============================
 // Función para obtener la cantidad de días en un mes específico
@@ -35,45 +36,35 @@ export function generateCalendarHeaders(month, year) {
 // ==============================
 export function generateCalendarDays(month, year, user) {
   const daysInMonth = getDaysInMonth(month, year);
-  return Array.from({ length: daysInMonth }, (_, i) => {
+
+  const daysHTML = Array.from({ length: daysInMonth }, (_, i) => {
     const day = (i + 1).toString();
     const cobro = user[day]?.Cobro || "";
     const timestamp = user[day]?.timestamp || "";
     const cobrador = user[day]?.cobrador || "";
 
+    // Generar el valor de cobro con clase específica para estilos
     return `
       <td>
         <div class="flex-container display-center">
-          <select class="form-select pay-select ${["", "3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "No Pagó", "Libre", "Feriado"].includes(cobro) ? "d-none" : ""}" 
-            data-id="${user.id}" 
-            data-field="${day}">
-            ${["", "3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "No Pagó", "Libre", "Feriado"]
-              .map(option => `<option value="${option}" ${cobro === option ? "selected" : ""}>${option}</option>`)
-              .join("")}
-          </select>
           <div class="timestamp">
             ${timestamp.replace(" ", "<br>") || ""}
             ${cobrador ? `<br>Cobrador: <span style="color: var(--clr-error);">${cobrador}</span>` : ""}
+            <div><span class="cobro-value">${cobro}</span></div>
           </div>
         </div>
       </td>
     `;
   }).join("");
-}
 
-// ==============================
-// Función para inicializar los botones de mes en el calendario
-// ==============================
-export function initializeMonthButtons() {
-  const buttons = document.querySelectorAll(".month-buttons .button");
-
-  buttons.forEach(button => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault(); // Evita la recarga de la página
-      const collection = button.getAttribute("data-collection");
-      const { month, year } = getMonthAndYearFromDataCollection(collection);
-
-      console.log(`Mes: ${month}, Año: ${year}`); // Aquí puedes agregar la lógica que necesitas para generar el calendario
+  // Después de generar el HTML, aplica estilos a los spans
+  setTimeout(() => {
+    const cobroElements = document.querySelectorAll(".cobro-value");
+    cobroElements.forEach(cobroElement => {
+      const selectedValue = cobroElement.textContent.trim();
+      applyStyles(cobroElement, selectedValue); // Aplica los estilos
     });
-  });
+  }, 0); // Asegúrate de que los elementos estén en el DOM antes de aplicar estilos
+
+  return daysHTML;
 }

@@ -1,3 +1,5 @@
+// updateSelectElements.js
+
 import { ref, update } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 import { getUserName } from "./getUserName.js";
 
@@ -66,10 +68,6 @@ export async function updateSelectElements(database, collection) {
                 await update(ref(database, `${collection}/${userId}`), updateData);
                 updateCellAppearance(event.target, selectedValue, timestamp, currentUserName);
 
-                // Remueve el select si el valor coincide con los valores especificados
-                if (["6.00", "10.00", "11.00", "24.00"].includes(selectedValue)) {
-                    event.target.remove();
-                }
             } catch (error) {
                 console.error("Error al actualizar en Firebase:", error);
                 event.target.value = originalValue;
@@ -82,7 +80,7 @@ export async function updateSelectElements(database, collection) {
 }
 
 // Función para aplicar estilos al valor de Cobro
-function applyStyles(cobroElement, selectedValue) {
+export function applyStyles(cobroElement, selectedValue) {
     cobroElement.style.color = selectedValue === "No Pagó" ? "var(--clr-error)" : "var(--clr-primary)";
     cobroElement.style.fontWeight = "500";
     cobroElement.style.fontSize = "1.33em";

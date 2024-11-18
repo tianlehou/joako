@@ -1,16 +1,5 @@
 // main-content-pages-02.js
-import { getMonthAndYearFromURL, getDaysInMonth } from "../modules/calendarUtils.js";
-// Esta función genera los encabezados de los días del mes.
-function generateCalendarHeaders() {
-  const { month, year } = getMonthAndYearFromURL(); // Asegúrate de tener esta función disponible para obtener el mes y año
-  const daysInMonth = getDaysInMonth(month, year); // Asegúrate de tener esta función disponible para obtener la cantidad de días en el mes
-  let headers = '';
-  for (let i = 1; i <= daysInMonth; i++) {
-      headers += `<th class="text-center">${i}</th>`;
-  }
-  headers += ``;
-  return headers;
-}
+import { generateCalendarHeaders } from "../modules/calendarUtils.js";
 
 function loadHTMLmaincontent() {
   const bodyContent = `

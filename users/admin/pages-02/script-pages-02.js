@@ -8,16 +8,16 @@ import { getUserRole } from "../../../modules/accessControl/getUserRole.js";
 import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
 
 import "./modules/downloadToExcel.js";
-import { deleteRow } from "./modules/deleteRow.js";
-import { addEditEventListeners } from "./modules/editRow.js";
+import { deleteRow } from "./modules/tabla/deleteRow.js";
+import { addEditEventListeners } from "./modules/tabla/editRow.js";
 // import { handleFileUpload } from './modules/Excel/uploadExcelHandler.js';
 
 import { initializeSearch } from "./modules/searchFunction.js";
 import { initScrollButtons } from "../modules/scrollButtons.js";
 import { includeHTML } from "../components/includeHTML/includeHTML.js";
-import { updateSelectElements } from "./modules/updateSelectElements.js";
-import { updateTotalSums } from "./modules/sumColumns.js";
-import { getMonthAndYearFromDataCollection, getDaysInMonth, generateCalendarHeaders, generateCalendarDays } from "./modules/calendarUtils.js";
+import { updateSelectElements } from "./modules/tabla/updateSelectElements.js";
+import { updateTotalSums } from "./modules/tabla/sumColumns.js";
+import { getMonthAndYearFromDataCollection, getDaysInMonth, generateCalendarHeaders, generateCalendarDays } from "./modules/tabla/calendarUtils.js";
 
 export let collection = null;
 

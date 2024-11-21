@@ -1,17 +1,4 @@
 // modules/sumColumns.js
-export function sumColumns(row, columns) {
-    let total = 0;
-
-    columns.forEach(columnIndex => {
-        const cell = row.cells[columnIndex];
-        const select = cell.querySelector('select');
-        if (select && select.value) {
-            total += parseFloat(select.value) || 0; // Sumar el valor del select si es numérico
-        }
-    });
-
-    return total;
-}
 
 export function updateTotalSums(tbody, columns) {
     const table = tbody.closest('table');
@@ -30,7 +17,7 @@ export function updateTotalSums(tbody, columns) {
         }
 
         // Añadir celdas de totales
-        columns.forEach((columnIndex, idx) => {
+        columns.forEach(() => {
             const sumCell = totalRow.insertCell(-1);
             sumCell.textContent = 'Total: 0.00'; // Inicializar con 0.00
         });

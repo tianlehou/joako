@@ -1,6 +1,6 @@
 // main-content-pages-02.js
 
-import { generateCalendarHeaders, getMonthAndYearFromDataCollection } from "../modules/calendarUtils.js";
+import { generateCalendarHeaders, getMonthAndYearFromDataCollection } from "../modules/tabla/calendarUtils.js";
 import { collection } from "../script-pages-02.js"; // Importa la colección actual
 
 function loadHTMLmaincontent() {

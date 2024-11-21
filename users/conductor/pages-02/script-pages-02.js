@@ -6,7 +6,6 @@ import { checkUserAccess } from "../../../modules/accessControl/roleAccessContro
 import { filterDataByAuthenticatedUser } from "../../../modules/tabla/filterData/filterByAuthUser.js";
 
 import { includeHTML } from "./components/includeHTML/includeHTML.js";
-import { updateSelectElements } from "./modules/updateSelectElements.js";
 import { getMonthAndYearFromDataCollection, generateCalendarHeaders, generateCalendarDays } from "./modules/calendarUtils.js";
 
 // Definir variable global para almacenar la colección
@@ -74,9 +73,6 @@ export function mostrarDatos() {
                     `;
                     tabla.appendChild(row);
                 });
-
-                // Actualizar los elementos <select> de la tabla
-                updateSelectElements(database, collection);
             })
             .catch((error) => {
                 console.error("Error al filtrar los datos: ", error);

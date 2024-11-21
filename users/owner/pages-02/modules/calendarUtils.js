@@ -1,5 +1,4 @@
 // calendarUtils.js
-import { applyStyles } from "./updateSelectElements.js"; // Importa la función applyStyles
 
 // ==============================
 // Función para obtener la cantidad de días en un mes específico
@@ -67,4 +66,11 @@ export function generateCalendarDays(month, year, user) {
   }, 0); // Asegúrate de que los elementos estén en el DOM antes de aplicar estilos
 
   return daysHTML;
+}
+
+// Función para aplicar estilos al valor de Cobro
+function applyStyles(cobroElement, selectedValue) {
+  cobroElement.style.color = selectedValue === "Taller" || selectedValue === "No Pagó" ? "var(--clr-error)" : "var(--clr-primary)";
+  cobroElement.style.fontWeight = "500";
+  cobroElement.style.fontSize = "1.33em";
 }

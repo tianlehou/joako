@@ -1,8 +1,8 @@
 import { database } from "../../../../environment/firebaseConfig.js";
 import { ref, onValue, update } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
-import { addEditEventListeners } from './editRow.js'; // Importa la función para añadir event listeners a los botones de editar
-import { deleteRow } from './deleteRow.js'; // Importa la función para añadir event listeners a los botones de borrar
-import { updateSelectElements } from "./updateSelectElements.js";
+import { addEditEventListeners } from './tabla/editRow.js'; // Importa la función para añadir event listeners a los botones de editar
+import { deleteRow } from './tabla/deleteRow.js'; // Importa la función para añadir event listeners a los botones de borrar
+import { updateSelectElements } from "./tabla/updateSelectElements.js";
 import { collection } from "../script-pages-02.js";
 
 // Función para buscar y filtrar los datos

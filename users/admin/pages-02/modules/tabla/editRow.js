@@ -1,11 +1,11 @@
 // editRow.js
 // Importa funciones y referencias necesarias de Firebase y módulos personalizados
 import { update, ref, get } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
-import { database } from "../../../../environment/firebaseConfig.js";
-import { mostrarDatos, collection } from '../script-pages-02.js';
-import { loadEditRowModal } from '../components/modal/editRowModal.js'; // Importa la función del modal
-import { loadEditRowConfirmationModal } from '../components/modal/editRowConfirmationModal.js'; // Importa la función del modal de confirmación
-import { loadToastComponent } from "../../../../components/toast/toastLoader.js";
+import { database } from "../../../../../environment/firebaseConfig.js";
+import { mostrarDatos, collection } from '../../script-pages-02.js';
+import { loadEditRowModal } from '../../components/modal/editRowModal.js'; // Importa la función del modal
+import { loadEditRowConfirmationModal } from '../../components/modal/editRowConfirmationModal.js'; // Importa la función del modal de confirmación
+import { loadToastComponent } from "../../../../../components/toast/toastLoader.js";
 
 // Cargar los modales una vez en el inicio
 loadEditRowModal();

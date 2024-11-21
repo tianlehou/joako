@@ -37,7 +37,7 @@ export function generateCalendarDays(month, year, user) {
           <td class="text-center">
               <div class="flex-container display-center">
                   <select class="form-select pay-select" data-id="${user.id}" data-field="${dia}" data-current-value="${cobro}">
-                      ${["", "3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "No Pagó", "Libre", "Feriado"]
+                      ${["", "3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "Libre", "Feriado", "Taller", "No Pagó"]
                           .map(option => 
                               `<option value="${option}" ${cobro === option ? "selected" : ""}>${option}</option>`
                           ).join('')} 

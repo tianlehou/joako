@@ -38,10 +38,10 @@ export function generateCalendarDays(month, year, user) {
         return `
             <td>
                 <div class="flex-container display-center">
-                    <select class="form-select pay-select ${["3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "Libre", "Feriado"].includes(cobro) ? "d-none" : ""}" data-id="${user.id}" data-field="${dia}">
-                        ${["", "3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "No Pagó", "Libre", "Feriado"]
-                            .map(option => `<option value="${option}" ${cobro === option ? "selected" : ""}>${option}</option>`)
-                            .join("")}
+                    <select class="form-select pay-select ${["", "No Pagó", "Taller"].includes(cobro) ? "" : "d-none"}" data-id="${user.id}" data-field="${dia}">
+                        ${["", "3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "Libre", "Feriado", "Taller", "No Pagó"]
+                        .map(option => `<option value="${option}" ${cobro === option ? "selected" : ""}>${option}</option>`)
+                        .join("")}
                     </select>
                     <div class="timestamp">
                         ${timestamp.replace(" ", "<br>") || ""}
@@ -51,19 +51,4 @@ export function generateCalendarDays(month, year, user) {
             </td>
         `;
     }).join("");
-}
-
-// Función para inicializar los botones del calendario
-export function initializeMonthButtons() {
-    const buttons = document.querySelectorAll(".month-buttons .button");
-
-    buttons.forEach(button => {
-        button.addEventListener("click", (event) => {
-            event.preventDefault(); // Evita la recarga de la página
-            const collection = button.getAttribute("data-collection");
-            const { month, year } = getMonthAndYearFromDataCollection(collection);
-            
-            console.log(`Mes: ${month}, Año: ${year}`); // Aquí puedes agregar la lógica que necesitas para generar el calendario
-        });
-    });
 }

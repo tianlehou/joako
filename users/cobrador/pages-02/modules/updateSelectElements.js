@@ -79,7 +79,7 @@ export async function updateSelectElements(database, collection) {
 
 // Función para aplicar estilos al valor de Cobro
 function applyStyles(cobroElement, selectedValue) {
-    cobroElement.style.color = selectedValue === "No Pagó" ? "var(--clr-error)" : "var(--clr-primary)";
+    cobroElement.style.color = selectedValue === "No Pagó" || selectedValue === "Taller" ? "var(--clr-error)" : "var(--clr-primary)";
     cobroElement.style.fontWeight = "500";
     cobroElement.style.fontSize = "1.33em";
 }

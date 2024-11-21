@@ -1,5 +1,4 @@
 // updateSelectElements.js
-
 import { ref, update } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 import { getUserName } from "./getUserName.js";
 
@@ -66,8 +65,6 @@ export async function updateSelectElements(database, collection) {
 
             try {
                 await update(ref(database, `${collection}/${userId}`), updateData);
-                updateCellAppearance(event.target, selectedValue, timestamp, currentUserName);
-
             } catch (error) {
                 console.error("Error al actualizar en Firebase:", error);
                 event.target.value = originalValue;
@@ -75,30 +72,12 @@ export async function updateSelectElements(database, collection) {
         }
 
         const timestamp = getPanamaDateTime();
-        updateCellAppearance(selectElement, selectElement.value, timestamp, currentUserName);
     });
 }
 
 // Función para aplicar estilos al valor de Cobro
 export function applyStyles(cobroElement, selectedValue) {
-    cobroElement.style.color = selectedValue === "No Pagó" ? "var(--clr-error)" : "var(--clr-primary)";
+    cobroElement.style.color = selectedValue === "Taller" || selectedValue === "No Pagó" ? "var(--clr-error)" : "var(--clr-primary)";
     cobroElement.style.fontWeight = "500";
     cobroElement.style.fontSize = "1.33em";
-}
-
-// Función para actualizar visualmente el select
-function updateCellAppearance(selectElement, selectedValue, timestamp, currentUserName) {
-    const tdElement = selectElement.closest('td');
-    let displayElement = tdElement.querySelector('.display-values');
-
-    if (!displayElement) {
-        displayElement = document.createElement('div');
-        displayElement.classList.add('display-values');
-        tdElement.appendChild(displayElement);
-    }
-
-    displayElement.innerHTML = `
-        <span class="cobro-value">${selectedValue}</span><br>
-    `;
-    applyStyles(displayElement.querySelector('.cobro-value'), selectedValue);
 }

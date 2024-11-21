@@ -75,13 +75,13 @@ export function updateSelectElements(database, collection) {
 
 // Función para aplicar estilos según el valor de Cobro
 function applyStyles(cobroElement, selectedValue) {
-    cobroElement.style.color = selectedValue === "No Pagó" ? "var(--clr-error)" : "var(--clr-primary)";
+    cobroElement.style.color = selectedValue === "No Pagó" || selectedValue === "Taller" ? "var(--clr-error)" : "var(--clr-primary)";
     cobroElement.style.fontWeight = "500";
     cobroElement.style.fontSize = "1.33em";
 }
 
 // Función para actualizar visualmente el select y la celda correspondiente
-function updateCellAppearance(selectElement, selectedValue, timestamp) {
+function updateCellAppearance(selectElement, selectedValue) {
     const tdElement = selectElement.closest('td');
 
     // Asegúrate de que la celda contenga un contenedor donde puedas mostrar los valores

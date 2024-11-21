@@ -7,10 +7,10 @@ import { checkAuth } from "../../../modules/accessControl/authCheck.js";
 import { getUserRole } from "../../../modules/accessControl/getUserRole.js";
 import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
 
-import "./modules/downloadToExcel.js";
+import "./modules/Excel/downloadToExcel.js";
 import { deleteRow } from "./modules/tabla/deleteRow.js";
 import { addEditEventListeners } from "./modules/tabla/editRow.js";
-// import { handleFileUpload } from './modules/Excel/uploadExcelHandler.js';
+import { handleFileUpload } from './modules/Excel/uploadExcelHandler.js';
 
 import { initializeSearch } from "./modules/searchFunction.js";
 import { initScrollButtons } from "../modules/scrollButtons.js";
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     includeHTML();
     initializeSearch(document.getElementById("contenidoTabla"));
     initScrollButtons(document.getElementById("contenidoTabla"));
-    // handleFileUpload();
+    handleFileUpload();
 });
 
 console.log(database);

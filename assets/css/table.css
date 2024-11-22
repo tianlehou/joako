@@ -159,3 +159,7 @@ table {
     display: inline-block;  /* Asegurar que se comporte como un bloque en línea */
 }
 
+th.sunday {
+    color: var(--clr-error) !important;
+    font-weight: bold;
+}

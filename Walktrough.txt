@@ -1,6 +1,15 @@
+Pendientes: - registrar que admin ha hecho registro de cobros
+			- implementar loader al cargar listado de excel
+
+
+
+22-11-2024 
+v01.15.00	Se implementó los dias en el thead a los users/(admin, cobrador, conductor, propietario)
+
 03-11-2024
 v01.14.00	Se muestra el nombre del cobrador al actualizar un pago en users/cobrador
 			- Creado: cobrador/modules/getUserName.js
 			- Integrado: getUserName a updateSelectElements.js
 			- Modificado: calendarUtils.js
 			Se eliminó el boton de editar y los select, para los roles "Administrador" y "Cobrador" en users/cobrador/pages
+

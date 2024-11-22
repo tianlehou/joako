@@ -22,10 +22,20 @@ export function getMonthAndYearFromDataCollection(collection) {
 // ==============================
 export function generateCalendarHeaders(month, year) {
   const daysInMonth = getDaysInMonth(month, year);
-  let headers = "";
+  let headers = '';
 
+  // Generar <th> para cada día del mes con su día de la semana
   for (let i = 1; i <= daysInMonth; i++) {
-    headers += `<th class="text-center">${i}</th>`;
+      const date = new Date(year, month - 1, i); // Crear una fecha específica
+      const dayName = date.toLocaleDateString('es-ES', { weekday: 'long' }); // Obtener el nombre del día
+      const formattedDayName = dayName.charAt(0).toUpperCase() + dayName.slice(1); // Capitalizar la primera letra
+      const isSunday = dayName.toLowerCase() === 'domingo'; // Verificar si es domingo
+
+      // Agregar clase condicional si es domingo
+      headers += `
+          <th class="text-center ${isSunday ? 'sunday' : ''}">
+              ${i}<br><span class="day-name">${formattedDayName}</span>
+          </th>`;
   }
   return headers;
 }

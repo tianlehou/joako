@@ -1,0 +1,127 @@
+<div class="loader" id="global-loader" style="display: none;" aria-label="Cargando contenido. Por favor, espera.">
+    <div class="loading-text">
+        Cargando<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+    </div>
+    <div class="loading-bar-background">
+        <div class="loading-bar">
+            <div class="white-bars-container">
+                <div class="white-bar"></div>
+                <div class="white-bar"></div>
+                <div class="white-bar"></div>
+                <div class="white-bar"></div>
+                <div class="white-bar"></div>
+                <div class="white-bar"></div>
+                <div class="white-bar"></div>
+                <div class="white-bar"></div>
+                <div class="white-bar"></div>
+                <div class="white-bar"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+:root {
+    --loader-height: 30px;
+    --loader-width: 200px;
+    --bar-height: 20px;
+    --gap: 18px;
+    --primary-color: #de4a0f;
+    --secondary-color: #f9c74f;
+    --background-color: #212121;
+    --shadow-color: #0c0c0c;
+    --text-color: #666;
+    --font-size: 14pt;
+    --dot-animation-duration: 1.5s;
+}
+
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 1000;
+}
+
+.loading-text {
+    color: var(--text-color);
+    font-size: var(--font-size);
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.dot {
+    margin-left: 3px;
+    animation: blink var(--dot-animation-duration) infinite;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.loading-bar-background {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    width: var(--loader-width);
+    height: var(--loader-height);
+    background-color: var(--background-color);
+    box-shadow: var(--shadow-color) -2px 2px 4px 0px inset;
+    border-radius: calc(var(--loader-height) / 2);
+}
+
+.loading-bar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 0%;
+    height: var(--bar-height);
+    overflow: hidden;
+    background: linear-gradient(0deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: calc(var(--bar-height) / 2);
+    animation: loading 4s ease-out infinite;
+}
+
+.white-bars-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+}
+
+.white-bar {
+    background: linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 70%);
+    width: 10px;
+    height: 45px;
+    opacity: 0.3;
+    transform: rotate(45deg);
+}
+
+@keyframes loading {
+    0% {
+        width: 0;
+    }
+
+    80%, 100% {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+</style>

@@ -1,10 +1,16 @@
-Pendientes: - registrar que admin ha hecho registro de cobros
-			- implementar loader al cargar listado de excel
+Pendientes:	- implementar loader al cargar listado de excel
+		- actualizar todos los modulos en searchFunction
 
 
+23-11-2024
+v01.15.01	- Se duplicó getUserName.js de cobrador para admin/pages-02/modules
+		- se importó { getUserName } a updateSelectElements.js
+		- se modificó { updateSelectElements } from updateSelectElements.js
+		para mostrar el nombre del Administrador cuando haga cambios en cobros.
 
 22-11-2024 
-v01.15.00	Se implementó los dias en el thead a los users/(admin, cobrador, conductor, propietario)
+v01.15.00	Se modificó { generateCalendarHeaders } from calendarUtils.js
+			para mostrar los dias en el thead a los users/(admin, cobrador, conductor, propietario)
 
 03-11-2024
 v01.14.00	Se muestra el nombre del cobrador al actualizar un pago en users/cobrador

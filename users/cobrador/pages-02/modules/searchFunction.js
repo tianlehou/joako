@@ -2,8 +2,8 @@
 import { database } from "../../../../environment/firebaseConfig.js";
 import { ref, onValue, update } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 import { addEditEventListeners } from './editRow.js'; // Importa la función para añadir event listeners a los botones de editar
-import { deleteRow } from './deleteRow.js'; // Importa la función para añadir event listeners a los botones de borrar
 import { updateSelectElements } from "./updateSelectElements.js";
+import { getMonthAndYearFromDataCollection, generateCalendarHeaders, generateCalendarDays } from "./calendarUtils.js";
 import { collection } from "../script-pages-02.js";
 
 // Función para buscar y filtrar los datos
@@ -30,21 +30,28 @@ export function findAndSearch(tabla) {
 
 // Función para renderizar los datos en la tabla
 function renderUsersTable(data) {
-    const tabla = document.getElementById("miTabla");
-    tabla.innerHTML = "";
+    const tabla = document.getElementById("contenidoTabla");
+    const thead = document.querySelector("#miTabla thead tr");
+    if (!tabla || !thead) {
+        console.error("Elemento 'contenidoTabla' o 'thead' no encontrado.");
+        return;
+    }
 
-    // Agrega el encabezado
-    const thead = `
-        <thead>
-            <tr>
+    if (!collection) {
+        console.error("La colección no está definida.");
+        return;
+    }
+
+    const { month, year } = getMonthAndYearFromDataCollection(collection);
+
+    // Generar encabezado dinámico
+    thead.innerHTML = `
                 <th>#</th>
                 <th>Unidad</th>
                 <th>Conductor</th>
                 <th>Propietario</th>
                 <th>Acciones</th>
-                ${Array.from({ length: 31 }, (_, i) => `<th>${i + 1}</th>`).join('')}
-            </tr>
-        </thead>
+                ${generateCalendarHeaders(month, year)}
     `;
     tabla.innerHTML = thead;
 
@@ -60,30 +67,7 @@ function renderUsersTable(data) {
                         <i class="bi bi-pencil"></i>
                     </button>
                 </td>
-                ${Array.from({ length: 31 }, (_, i) => {
-                    const dia = (i + 1).toString();
-                    const cobroData = user[dia] || {};
-                    const cobro = cobroData.Cobro || '';
-                    const timestamp = cobroData.timestamp || '';
-                    const cobrador = cobroData.cobrador || '';
-                    const isHidden = ["3.00","6.00", "10.00", "11.00", "21.00", "24.00"].includes(cobro);
-
-                    return `
-                        <td class="${isHidden ? 'text-center' : ''}">
-                            <div class="flex-container display-center">
-                                <select class="form-select pay-select ${isHidden ? 'd-none' : ''}" data-id="${user.id}" data-field="${dia}">
-                                    ${["", "3.00", "6.00", "10.00", "11.00", "21.00", "24.00", "No Pagó"].map(option =>
-                                        `<option value="${option}" ${cobro === option ? "selected" : ""}>${option}</option>`
-                                    ).join('')}
-                                </select>
-                                <div class="timestamp">
-                                    ${timestamp.replace(' ', '<br>')}
-                                    ${cobrador ? `<br>Cobrador: <span style="color: var(--clr-error);">${cobrador}</span>` : ""}
-                                </div>
-                            </div>
-                        </td>
-                    `;
-                }).join('')}
+                ${generateCalendarDays(month, year, user)}
             </tr>
         `;
         tabla.innerHTML += row;
@@ -116,7 +100,6 @@ function attachSelectChangeListeners() {
 
     // Añadir el manejador de eventos para los botones de editar y borrar
     addEditEventListeners();
-    deleteRow(database, collection);
 }
 
 // Función para inicializar la búsqueda

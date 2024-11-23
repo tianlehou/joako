@@ -46,15 +46,18 @@ function renderUsersTable(data) {
 
     // Generar encabezado dinámico
     thead.innerHTML = `
-                <th>#</th>
-                <th>Unidad</th>
-                <th>Conductor</th>
-                <th>Propietario</th>
-                <th>Acciones</th>
-                ${generateCalendarHeaders(month, year)}
+        <th>#</th>
+        <th>Unidad</th>
+        <th>Conductor</th>
+        <th>Propietario</th>
+        <th>Acciones</th>
+        ${generateCalendarHeaders(month, year)}
     `;
-    tabla.innerHTML = thead;
 
+    // Limpiar el cuerpo de la tabla antes de renderizar
+    tabla.innerHTML = ""; 
+
+    // Renderizar filas de datos
     data.forEach((user, index) => {
         const row = `
             <tr>
@@ -77,6 +80,7 @@ function renderUsersTable(data) {
     attachSelectChangeListeners();
     updateSelectElements(database, collection);
 }
+
 
 // Función para adjuntar manejadores de eventos a los selects
 function attachSelectChangeListeners() {

@@ -1,5 +1,4 @@
 import { getUserRole } from "../../modules/accessControl/getUserRole.js";
-import { collection } from "../../modules/collection/collectionHandler.js";
 
 function loadMonthButtons(updateCollection, mostrarDatos, userRole) {
     fetch("../../../components/month-buttons/month-buttons.html")
@@ -8,7 +7,7 @@ function loadMonthButtons(updateCollection, mostrarDatos, userRole) {
         .catch(error => console.error(error));
 }
 
-function renderButtons(data, updateCollection, mostrarDatos, userRole) {
+function renderButtons(data, updateCollection, mostrarDatos) {
     const container = document.getElementById("month-buttons-container");
     if (container) {
         container.innerHTML = data;
@@ -23,9 +22,6 @@ function renderButtons(data, updateCollection, mostrarDatos, userRole) {
             // Activar solo el botón correspondiente al mes actual
             button.classList.toggle("active", buttonCollection === currentMonthCollection);
         });
-
-        // Mostrar el botón según el rol del usuario
-        showButtonByRole(userRole);
 
         addClickEventToButtons(buttons, updateCollection, mostrarDatos);
     }
@@ -56,17 +52,6 @@ function addClickEventToButtons(buttons, updateCollection, mostrarDatos) {
             }
         });
     });
-}
-
-// Función para mostrar el botón solo a roles permitidos
-function showButtonByRole(userRole) {
-    const adminButtonContainer = document.getElementById("adminButtonContainer");
-    const rolesPermitidos = ["Administrador", "Cobrador", "Desarrollador"];
-    
-    // Si el rol está permitido, quitamos la clase display-none para mostrar el botón
-    if (adminButtonContainer && rolesPermitidos.includes(userRole)) {
-        adminButtonContainer.classList.remove("display-none");
-    }
 }
 
 function getScriptPath(role) {

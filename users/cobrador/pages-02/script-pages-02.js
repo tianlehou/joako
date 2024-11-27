@@ -50,7 +50,6 @@ export function mostrarDatos() {
 
     // Generar encabezado dinámico
     thead.innerHTML = `
-        <th>#</th>
         <th>Nombre</th>
         <th>Conductor</th>
         <th>Propietario</th>
@@ -69,11 +68,10 @@ export function mostrarDatos() {
 
         data.sort((a, b) => a.nombre.localeCompare(b.nombre));
 
-        data.forEach((user, index) => {
+        data.forEach((user) => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${user.nombre}</td>
+                <td class="columna-de-nombre">${user.nombre}</td>
                 <td>${user.correoConductor || ''}</td>
                 <td>${user.correoPropietario || ''}</td>
                 <td class="display-flex-center action-col">

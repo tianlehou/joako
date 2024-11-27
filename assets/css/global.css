@@ -29,3 +29,17 @@
 .border-red {
     border: 1px solid red;
 }
+
+/* Button Styles */
+.button {
+    display: inline-block;
+    padding: .75em 1.5em;
+    border-radius: .5em;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 20px;
+}
+
+#delete-board-button {
+    background-color: red;
+}

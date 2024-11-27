@@ -46,7 +46,6 @@ function renderUsersTable(data) {
 
     // Generar encabezado dinámico
     thead.innerHTML = `
-        <th>#</th>
         <th>Unidad</th>
         <th>Conductor</th>
         <th>Propietario</th>
@@ -61,7 +60,6 @@ function renderUsersTable(data) {
     data.forEach((user, index) => {
         const row = `
             <tr>
-                <td>${index + 1}</td>
                 <td>${user.nombre}</td>
                 <td>${user.correoConductor || ''}</td>
                 <td>${user.correoPropietario || ''}</td>

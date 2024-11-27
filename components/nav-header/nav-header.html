@@ -1,7 +1,11 @@
 <!-- nav-header.html -->
+<div class="role role-container display-flex-center">
+    <Span>Rol: </Span>
+    <h3 class="logo">Invitado</h3>
+</div>
+
 <header class="nav-header">
     <section class="dropdown-section">
-        <!-- Dropdown - Tableros -->
         <div class="dropdown">
             <a class="button bi bi-list" data-bs-toggle="dropdown" id="menu-icon"></a>
             <ul class="dropdown-menu">
@@ -13,27 +17,29 @@
             </ul>
         </div>
     </section>
-    <h3 class="logo">Invitado</h3>
 </header>
 
 <style>
-    .nav-header {
-        position: fixed;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: 5em;
-        z-index: 4;
+    .role-container {
         display: flex;
-        align-items: center;
-        margin: 0;
-        box-shadow: 0 0 1rem 0 rgba(29, 15, 15, 0.3);
+        justify-content: left;
+        color: var(--clr-text);
+        margin-top: 0.8em;
+        padding: 0 30px;
+        width: 100%;
+    }
+
+    .role-container span {
+        font-size: 30px;
+        font-weight: 400;
     }
 
     .logo {
-        color: var(--clr-primary);
-        font-size: 1rem;
+        font-size: 1.5rem;
         font-weight: 500;
+        margin-top: 10px;
+        padding: 0 10px;
+        color: var(--clr-primary)
     }
 
     .dropdown-section {
@@ -41,23 +47,26 @@
         display: flex;
         margin: 0;
         padding: 0;
+        z-index: 4;
     }
 
     .dropdown-section .button {
+        position: fixed;
+        top: 0px;
+        right: 0px;
         width: 60px;
         text-decoration: none;
         color: #1c1c1c;
         background: white;
         border-radius: 50px;
         border: 1px solid #e8e8e8;
+        box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
         justify-items: center;
         transition: all 0.3s;
-        box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
         padding: 0px;
         font-size: 2.25em;
         font-weight: 500;
         text-align: center;
-        /* Transición aplicada al estado inicial */
     }
 
     .dropdown-section .button:hover {

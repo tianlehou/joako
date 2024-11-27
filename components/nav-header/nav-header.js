@@ -47,7 +47,7 @@ function initializeLogout() {
 
 // Función para actualizar el contenido del h3 con el rol del usuario
 function updateUserRoleInHeader() {
-    const roleElement = document.querySelector(".nav-header h3");
+    const roleElement = document.querySelector(".role h3");
 
     getUserRole()
         .then((role) => {

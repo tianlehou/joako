@@ -16,20 +16,25 @@
     align-items: center;
 }
 
-.role-select, .estado-select, .pay-select {
+.role-select,
+.estado-select,
+.pay-select {
     width: 10px;
     margin-left: 5px;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ddd;
     padding: 8px;
     color: #666;
     text-align: center;
-    white-space: nowrap; 
+    white-space: nowrap;
 }
 
 th {
+    position: sticky;
+    top: 0;
     background-color: #f2f2f2;
     font-weight: 500;
 }
@@ -37,25 +42,29 @@ th {
 a {
     text-decoration: none;
     cursor: pointer;
-    color: dodgerblue;
 }
 
-a:hover {
-    color: #ff9900;
+/* Segunda columna */
+td:nth-child(2) {
+    position: sticky;
+    left: 0px;
+    /* Fija la columna al desplazarte horizontalmente */
+    background-color: white;
+    /* Fondo para evitar superposición visual */
+    z-index: 1;
+    /* Asegura que la celda sea visible sobre otras filas */
+    border-right: 1px solid #ddd;
 }
 
-.sticky-col-1 {
+/* Encabezado específico de la segunda columna */
+th:nth-child(2) {
     position: sticky;
     left: 0;
-    background-color: white;
-    z-index: 2;
-    border-right: 1px solid #ddd;
-  }
-  
-  .sticky-col-2 {
-    position: sticky;
-    left: 37px; 
-    background-color: white;
-    z-index: 2;
-    border-right: 1px solid #ddd;
-  }
+    /* Fija al desplazarte horizontalmente */
+    top: 0 !important;
+    /* Asegura que el encabezado permanezca fijo también al desplazarte verticalmente */
+    z-index: 50;
+    /* Prioridad más alta para superposición */
+    background-color: #f2f2f2;
+    /* Color de fondo */
+}

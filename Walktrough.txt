@@ -6,11 +6,11 @@ Pendientes:	- implementar loader al cargar listado de excel
 
 23-11-2024
 v01.15.02	- Se actualizó searchFuntion.js de users/(admin, cobrador)
-			- se importó { getMonthAndYearFromDataCollection, generateCalendarDays/Headers } from ./calendarUtils.js
-			- se modificó { renderUsersTable } from searchFunction.js
-			para mostrar el encabezado con fecha ( Lunes, Martes, etc... )
-			para mostrar el estado de cobro con "Taller", "Libre", "Feriado" que antes no mostraba.
-			- se modificó tabla.css para que la celda de acciones tenga { height: 100%; }
+		- se importó { getMonthAndYearFromDataCollection, generateCalendarDays/Headers } from ./calendarUtils.js
+		- se modificó { renderUsersTable } from searchFunction.js
+		para mostrar el encabezado con fecha ( Lunes, Martes, etc... )
+		para mostrar el estado de cobro con "Taller", "Libre", "Feriado" que antes no mostraba.
+		- se modificó tabla.css para que la celda de acciones tenga { height: 100%; }
 
 v01.15.01	- Se duplicó getUserName.js de cobrador para admin/pages-02/modules
 		- se importó { getUserName } a updateSelectElements.js

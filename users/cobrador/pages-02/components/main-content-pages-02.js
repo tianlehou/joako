@@ -1,5 +1,4 @@
 // main-content-pages-02.js
-
 import { generateCalendarHeaders, getMonthAndYearFromDataCollection } from "../modules/calendarUtils.js";
 import { collection } from "../script-pages-02.js"; // Importa la colección actual
 
@@ -14,12 +13,11 @@ function loadHTMLmaincontent() {
       <table id="miTabla" class="table table-striped">
         <thead>
           <tr>
-            <th>#</th>
             <th>Nombre</th>
             <th>Conductor</th>
             <th>Propietario</th>
             <th>Acciones</th>
-            ${generateCalendarHeaders(month, year)} <!-- Pasar mes y año como argumentos -->
+            ${generateCalendarHeaders(month, year)}
           </tr>
         </thead>
 

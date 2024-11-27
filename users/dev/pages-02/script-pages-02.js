@@ -16,7 +16,7 @@ import { initScrollButtons } from "../modules/scrollButtons.js";
 import { includeHTML } from '../components/includeHTML/includeHTML.js';
 import { updateSelectElements } from './modules/updateSelectElements.js';
 import { updateTotalSums } from './modules/sumColumns.js';
-import { getDaysInMonth, generateCalendarDays, getMonthAndYearFromURL } from "./modules/calendarUtils.js";
+import { getDaysInMonth, generateCalendarDays, getMonthAndYearFromDataCollection } from "./modules/tabla/calendarUtils.js";
 
 // Definir variable global para almacenar la colección
 export let collection = null; 
@@ -47,7 +47,7 @@ export function mostrarDatos() {
         return;
     }
 
-    const { month, year } = getMonthAndYearFromURL();
+    const { month, year } = getMonthAndYearFromDataCollection();
 
     onValue(ref(database, collection), (snapshot) => {
         tabla.innerHTML = "";
@@ -63,8 +63,8 @@ export function mostrarDatos() {
         data.forEach((user, index) => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td>${index + 1}</td>
                 <td>${user.nombre}</td>
+                <td>${index + 1}</td>
                 <td>${user.correoConductor || ''}</td>
                 <td>${user.correoPropietario || ''}</td>
                 <td class="display-flex-center">

@@ -1,7 +1,7 @@
 // uploadExcelHandler.js
 
 import { ref, push } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
-import { database } from "../../../../../../environment/firebaseConfig.js";
+import { database } from "../../../../../environment/firebaseConfig.js";
 import { collection } from "../../script-pages-02.js";
 // Función para leer y procesar el archivo Excel y actualizar la base de datos
 export function handleFileUpload() {

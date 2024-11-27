@@ -4,7 +4,7 @@ function loadHTMLHead() {
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" type="image/gif" />
-      <title>Biblioteca Admin</title>
+      <title>Admin</title>
   
       <!-- Google Fonts - Poppins -->
       <link rel="preconnect" href="https://fonts.googleapis.com" />

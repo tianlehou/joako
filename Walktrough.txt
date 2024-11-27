@@ -2,6 +2,8 @@ Pendientes:	- implementar loader al cargar listado de excel
 
 
 27-11-2024
+v01.15.04 - Se actualizó { downloadToExcel } --> script-pages-01.js - users/dev
+
 v01.15.03	- Se eliminó "sumColumn.js"
 		- Se implementó { generateColumnTotals } from calendarUtils.js --> script-pages-02.js
 		a usuarios/cobrador, admin, dev

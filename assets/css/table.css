@@ -97,7 +97,7 @@ td {
 /* Estilo para el encabezado de totales */
 #miTabla thead tr.totales-row {
     position: sticky; /* Mantiene los totales visibles al hacer scroll */
-    top: 0; /* Debajo del encabezado principal */
+    top: 65px; /* Debajo del encabezado principal */
     z-index: 1; /* Menor que el encabezado principal */
     background-color: #ffffff; /* Fondo para diferenciarlo */
     border-top: 2px solid #ccc; /* Línea superior */

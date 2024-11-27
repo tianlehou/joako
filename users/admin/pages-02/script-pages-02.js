@@ -1,6 +1,6 @@
 // script-pages-02.js
 import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
-import { database } from "../../../environment/firebaseConfig.js";
+import { database } from "../environment/firebaseConfig.js";
 
 import "./modules/newRegister.js";
 import { checkAuth } from "../../../modules/accessControl/authCheck.js";
@@ -17,7 +17,8 @@ import { initScrollButtons } from "../modules/scrollButtons.js";
 import { includeHTML } from "../components/includeHTML/includeHTML.js";
 import { updateSelectElements } from "./modules/tabla/updateSelectElements.js";
 import { updateTotalSums } from "./modules/tabla/sumColumns.js";
-import { getMonthAndYearFromDataCollection, getDaysInMonth, generateCalendarHeaders, generateCalendarDays } from "./modules/tabla/calendarUtils.js";
+import { getMonthAndYearFromDataCollection, getDaysInMonth,
+    generateCalendarHeaders, generateCalendarDays } from "./modules/tabla/calendarUtils.js";
 
 export let collection = null;
 

@@ -1,7 +1,7 @@
 // Importa las funciones 'onValue' y 'ref' de la biblioteca de base de datos en tiempo real de Firebase
 import { onValue, ref } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 // Importa la configuración de la base de datos desde el archivo de configuración de Firebase
-import { database } from "../../../../../../environment/firebaseConfig.js";
+import { database } from "../../../../../environment/firebaseConfig.js";
 import { collection } from "../../script-pages-02.js";
 
 // Función para cargar un archivo Excel desde una URL

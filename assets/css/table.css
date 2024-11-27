@@ -89,7 +89,7 @@ td {
 #miTabla thead tr.main-header {
     position: sticky; /* Mantiene el encabezado visible al hacer scroll */
     top: 0; /* Posición en la parte superior */
-    z-index: 2; /* Superior al encabezado de totales */
+    z-index: 3; /* Superior al encabezado de totales */
     background-color: #f9f9f9; /* Fondo para diferenciarlo */
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Opcional: sombra */
 }
@@ -98,7 +98,7 @@ td {
 #miTabla thead tr.totales-row {
     position: sticky; /* Mantiene los totales visibles al hacer scroll */
     top: 65px; /* Debajo del encabezado principal */
-    z-index: 1; /* Menor que el encabezado principal */
+    z-index: 2; /* Menor que el encabezado principal */
     background-color: #ffffff; /* Fondo para diferenciarlo */
     border-top: 2px solid #ccc; /* Línea superior */
 }

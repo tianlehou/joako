@@ -112,14 +112,14 @@ body {
     overflow: hidden;
     white-space: nowrap;
     width: 100%;
-    animation: fade 10s ease-in-out infinite;
+    animation: fade 15s infinite;
 }
 
 @keyframes fade {
 
     0%,
     100% {
-        opacity: 0;
+        opacity: 0.5;
     }
 
     50% {
@@ -197,9 +197,10 @@ body {
 .forgot-password {
     position: relative;
     text-align: right;
-    margin: -15px 15px 15px 0;
+    margin: -5px 15px 25px 0;
     color: var(--clr-secondary);
     cursor: pointer;
+    font-size: 1.2em;
     z-index: 2;
 }
 .forgot-password:hover {
@@ -236,8 +237,8 @@ body {
 }
 
 .new-user a {
+    font-size: 1.2em;
     color: var(--clr-secondary);
-    size: 5em;
     text-decoration-line: none;
 }
 

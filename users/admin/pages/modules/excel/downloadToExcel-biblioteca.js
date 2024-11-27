@@ -1,7 +1,7 @@
 // Importa las funciones 'onValue' y 'ref' de la biblioteca de base de datos en tiempo real de Firebase
 import { onValue, ref } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 // Importa la configuración de la base de datos desde el archivo de configuración de Firebase
-import { database } from "../../environment/firebaseConfig.js";
+import { database } from "../../../../../environment/firebaseConfig.js";
 
 // Función para cargar un archivo Excel desde una URL
 async function loadExcelTemplate(url) {
@@ -22,7 +22,7 @@ async function downloadToExcel() {
     if (confirmDownload) {
         try {
             // Carga la plantilla de Excel desde la URL proporcionada
-            const templateWorkbook = await loadExcelTemplate("../../../assets/excelTemplate/datos-biblioteca.xlsx");
+            const templateWorkbook = await loadExcelTemplate("../pages/modules/excel/datos-biblioteca.xlsx");
             
             // Obtiene los datos de la base de datos en tiempo real de Firebase
             onValue(ref(database, collection), (snapshot) => {

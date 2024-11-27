@@ -10,7 +10,7 @@ import { filterDataByRole } from "../../../modules/tabla/filterData/filterDataBy
 import { deleteRow } from "../modules/tabla/deleteRow.js";
 import { addEditEventListeners } from "./modules/editRow.js";
 import { addCopyEmailListeners } from "./modules/copyEmail.js";
-import "../../../modules/excel/downloadToExcel-biblioteca.js";
+import "./modules/excel/downloadToExcel-biblioteca.js";
 
 import { initializeSearch } from "./modules/searchFunction.js";
 import { includeHTML } from "../components/includeHTML/includeHTML.js";

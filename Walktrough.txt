@@ -1,8 +1,10 @@
 Pendientes:	- implementar loader al cargar listado de excel
-			- arreglar sumTotals
 
 
-
+27-11-2024
+v01.15.03	- Se eliminó "sumColumn.js"
+		- Se implementó { generateColumnTotals } from calendarUtils.js --> script-pages-02.js
+		a usuarios/cobrador, admin, dev
 
 23-11-2024
 v01.15.02	- Se actualizó searchFuntion.js de users/(admin, cobrador)

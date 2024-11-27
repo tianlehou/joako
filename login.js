@@ -5,17 +5,18 @@ import { setupInstallPrompt } from './modules/installPrompt.js';
 
 // Textos que se mostrarán en el carrusel
 const texts = [
+    "",
     "Bienvenido a",
     "Joako App",
     "Inicia sesión",
-    "¡Soldado!"
+    "¡Guerreros!"
   ];
   
   // Elemento h1 donde se mostrará el texto
   const carouselText = document.getElementById("carousel-text");
   
   let index = 0; // Índice para controlar los textos
-  const timeInterval = 1250; // Intervalo de cambio de texto en milisegundos
+  const timeInterval = 625; // Intervalo de cambio de texto en milisegundos
   
   // Función que cambia el texto cada cierto tiempo
   function changeText() {

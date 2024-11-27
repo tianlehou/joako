@@ -52,8 +52,8 @@ export function mostrarDatos() {
 
     // Generar encabezado dinámico
     thead.innerHTML = `
-        <th>#</th>
         <th>Nombre</th>
+        <th>#</th>
         <th>Conductor</th>
         <th>Propietario</th>
         <th>Acciones</th>
@@ -74,8 +74,8 @@ export function mostrarDatos() {
         data.forEach((user, index) => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td>${index + 1}</td>
                 <td>${user.nombre}</td>
+                <td>${index + 1}</td>
                 <td>${user.correoConductor || ""}</td>
                 <td>${user.correoPropietario || ""}</td>
                 <td class="display-flex-center">

@@ -14,21 +14,6 @@ body {
     height: 100%;
 }
 
-.border-red {
-    border: 1px solid red;
-}
-
-.button {
-    display: inline-block;
-    padding: .75em 1.5em;
-    background: #666;
-    color: #fff;
-    border-radius: .5em;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    margin: 20px;
-}
 
 .display-center {
     display: grid;
@@ -67,46 +52,9 @@ body {
     text-decoration: none;
 }
 
-/* Header */
-header {
-    padding: 20px;
-}
-
 .input-group {
     width: 250px;
-    margin: 1em;
 }
-#searchInput {
-    width: 100px;
-    height: 40px;
-}
-#searchButton {
-    width: auto;
-    height: 40px;
-    padding: 0 10px 0 10px;
-}
-
-/* Middle section */
-#middleSection {
-    padding: 20px;
-    margin: 0;
-    width: 300px;
-}
-
-#middleSection ion-icon{
-    font-size: 2em;
-    color: var(--clr-secondary);
-    z-index: 5;
-}
-h1 {
-    font-weight: 500;
-    font-size: 1.2em;
-    margin: 15px;
-    text-align: center;
-    color: #333;
-}
-
-
 
 /*===== ===== ===== Card ===== ===== =====*/
 .card {

@@ -13,7 +13,7 @@ import { handleFileUpload } from "../modules/Excel/uploadExcelHandler.js";
 
 import { initializeSearch } from "./modules/searchFunction.js";
 import { initScrollButtons } from "../modules/scrollButtons.js";
-import { includeHTML } from "../components/includeHTML/includeHTML.js";
+import { includeHTML } from "./components/includeHTML/includeHTML.js";
 import { updateSelectElements } from "./modules/updateSelectElements.js";
 import { getMonthAndYearFromDataCollection,
     generateCalendarHeaders, generateColumnTotals, generateCalendarDays } from "./modules/calendarUtils.js";

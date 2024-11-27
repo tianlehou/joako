@@ -13,9 +13,9 @@ function loadHTMLmaincontent() {
     <div class="main-container">
       <table id="miTabla" class="table table-striped">
         <thead>
-          <tr>
-          <th>Nombre</th>
-          <th>#</th>
+          <tr class="main-header">
+            <th>Nombre</th>
+            <th>#</th>
             <th>Conductor</th>
             <th>Propietario</th>
             <th>Acciones</th>

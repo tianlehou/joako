@@ -13,7 +13,7 @@ function loadHTMLmaincontent() {
     <div class="main-container">
       <table id="miTabla" class="table table-striped">
         <thead>
-          <tr>
+          <tr class="main-header">
             <th>#</th>
             <th>Nombre</th>
             <th>Conductor</th>

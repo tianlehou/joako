@@ -15,7 +15,8 @@ import { initializeSearch } from "./modules/searchFunction.js";
 import { initScrollButtons } from "../modules/scrollButtons.js";
 import { includeHTML } from "../components/includeHTML/includeHTML.js";
 import { updateSelectElements } from "./modules/updateSelectElements.js";
-import { getMonthAndYearFromDataCollection, generateCalendarHeaders, generateCalendarDays } from "./modules/calendarUtils.js";
+import { getMonthAndYearFromDataCollection,
+    generateCalendarHeaders, generateColumnTotals, generateCalendarDays } from "./modules/calendarUtils.js";
 
 export let collection = null;
 
@@ -35,9 +36,11 @@ export function updateCollection(value) {
 // Función para mostrar los datos en la tabla
 export function mostrarDatos() {
     const tabla = document.getElementById("contenidoTabla");
-    const thead = document.querySelector("#miTabla thead tr");
-    if (!tabla || !thead) {
-        console.error("Elemento 'contenidoTabla' o 'thead' no encontrado.");
+    const thead = document.querySelector("#miTabla thead");
+    const mainHeader = document.querySelector("#miTabla thead tr.main-header");
+
+    if (!tabla || !thead || !mainHeader) {
+        console.error("Elemento 'contenidoTabla', 'thead' o 'main-header' no encontrado.");
         return;
     }
 
@@ -49,7 +52,7 @@ export function mostrarDatos() {
     const { month, year } = getMonthAndYearFromDataCollection(collection);
 
     // Generar encabezado dinámico
-    thead.innerHTML = `
+    mainHeader.innerHTML = `
         <th>Nombre</th>
         <th>Conductor</th>
         <th>Propietario</th>
@@ -59,19 +62,36 @@ export function mostrarDatos() {
 
     onValue(ref(database, collection), (snapshot) => {
         tabla.innerHTML = ""; // Limpia la tabla
+        let data = [];
 
-        const data = [];
         snapshot.forEach((childSnapshot) => {
             const user = childSnapshot.val();
             data.push({ id: childSnapshot.key, ...user });
         });
 
+        // Ordenar los datos alfabéticamente por nombre
         data.sort((a, b) => a.nombre.localeCompare(b.nombre));
 
+        // Generar encabezado de totales
+        let totalsRow = document.querySelector("#miTabla thead tr.totales-row");
+        const totalsHTML = generateColumnTotals(data, month, year);
+
+        if (totalsRow) {
+            // Si ya existe la fila de totales, actualízala
+            totalsRow.innerHTML = totalsHTML;
+        } else {
+            // Si no existe, crea una nueva fila de totales
+            totalsRow = document.createElement("tr");
+            totalsRow.classList.add("totales-row");
+            totalsRow.innerHTML = totalsHTML;
+            thead.appendChild(totalsRow);
+        }
+
+        // Agregar filas de datos
         data.forEach((user) => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td class="columna-de-nombre">${user.nombre}</td>
+                <td>${user.nombre}</td>
                 <td>${user.correoConductor || ''}</td>
                 <td>${user.correoPropietario || ''}</td>
                 <td class="display-flex-center action-col">

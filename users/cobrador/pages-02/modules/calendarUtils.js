@@ -34,6 +34,38 @@ export function generateCalendarHeaders(month, year) {
     return headers;
 }
 
+// Función para calcular y generar el encabezado de totales
+export function generateColumnTotals(data, month, year) {
+    const daysInMonth = getDaysInMonth(month, year);
+
+    // Inicializar un array para almacenar la suma de cada columna
+    const totals = Array(daysInMonth).fill(0);
+
+    // Calcular totales por cada día
+    data.forEach((user) => {
+        for (let i = 1; i <= daysInMonth; i++) {
+            const dia = i.toString();
+            const valor = parseFloat(user[dia]?.Cobro) || 0;
+            if (!isNaN(valor)) {
+                totals[i - 1] += valor;
+            }
+        }
+    });
+
+    const totalsHTML = `
+    <tr>
+            <th>Totales</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        ${totals.map(total => `<th class="text-center">${total.toFixed(2)}</th>`).join("")}
+</tr>
+
+    `;
+
+    return totalsHTML;
+}
+
 // Generar columnas del calendario basadas en los días del mes
 export function generateCalendarDays(month, year, user) {
     const daysInMonth = getDaysInMonth(month, year);

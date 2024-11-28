@@ -8,7 +8,7 @@ import { getMonthAndYearFromDataCollection, generateCalendarHeaders, generateCal
 import { collection } from "../script-pages-02.js";
 
 // Función para buscar y filtrar los datos
-export function findAndSearch(tabla) {
+export function findAndSearch() {
     const input = document.getElementById("searchInput").value.toLowerCase();
 
     // Obtén los datos desde Firebase
@@ -47,7 +47,6 @@ function renderUsersTable(data) {
 
     // Generar encabezado dinámico
     thead.innerHTML = `
-        <th>#</th>
         <th>Unidad</th>
         <th>Conductor</th>
         <th>Propietario</th>
@@ -58,10 +57,9 @@ function renderUsersTable(data) {
     // Limpiar el cuerpo de la tabla antes de renderizar
     tabla.innerHTML = ""; 
 
-    data.forEach((user, index) => {
+    data.forEach((user) => {
         const row = `
             <tr>
-                <td>${index + 1}</td>
                 <td>${user.nombre}</td>
                 <td>${user.correoConductor || ''}</td>
                 <td>${user.correoPropietario || ''}</td>

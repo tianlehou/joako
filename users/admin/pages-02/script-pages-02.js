@@ -16,8 +16,8 @@ import { initializeSearch } from "./modules/searchFunction.js";
 import { initScrollButtons } from "../modules/scrollButtons.js";
 import { includeHTML } from "../components/includeHTML/includeHTML.js";
 import { updateSelectElements } from "./modules/tabla/updateSelectElements.js";
-import { getMonthAndYearFromDataCollection, getDaysInMonth,
-    generateCalendarHeaders, generateColumnTotals, generateCalendarDays } from "./modules/tabla/calendarUtils.js";
+import { getMonthAndYearFromDataCollection, generateCalendarHeaders, generateColumnTotals,
+    generateCalendarDays } from "./modules/tabla/calendarUtils.js";
 
 export let collection = null;
 

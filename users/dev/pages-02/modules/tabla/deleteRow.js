@@ -1,5 +1,5 @@
 import { ref, remove } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
-import { mostrarDatos } from '../script-pages-02.js';
+import { mostrarDatos } from '../../script-pages-02.js';
 
 export function deleteRow(database, collection) {
   const deleteButtons = document.querySelectorAll(".delete-user-button");

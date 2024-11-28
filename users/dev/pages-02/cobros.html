@@ -39,9 +39,13 @@
   <div id="main-content-pages-02-container"></div>
   <script src="./components/main-content-pages-02.js" defer type="module"></script>
 
-  <!-- Button - Download to Excel -->
-  <div id="download-to-excel-container"></div>
-  <script src="../../../components/downloadToExcelButton/downloadToExcelButton.js"></script>
+  <!-- Button - Delete Table & Download to Excel -->
+  <div class="display-flex-center">
+    <div id="delete-table-container"></div>
+    <div id="download-to-excel-container"></div>
+    <script src="./components/buttons/deleteTableButton/deleteTableButton.js"></script>
+    <script src="./components/buttons/downloadToExcelButton/downloadToExcelButton.js"></script>
+  </div>
 
   <!-- Footer -->
   <footer class="display-flex-center">
@@ -50,7 +54,7 @@
 
   <!-- Modular - New Register Modal -->
   <div id="new-register-modal-container"></div>
-  <script src="../components/new-register-modal.js"></script>
+  <script type="module" src="./components/modal/newRegisterModal/newRegisterModal.js"></script>
 
   <!-- Contenedor para el modal de edición y de confirmación -->
   <div id="edit-row-modal-container"></div>

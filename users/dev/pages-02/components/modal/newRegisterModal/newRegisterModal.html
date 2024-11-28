@@ -1,0 +1,150 @@
+<!-- newRegisterModal.html -->
+<div class="modal fade" id="newRegisterModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modern-modal">
+            <div class="modal-header modern-header">
+                <h5 class="modal-title">Formulario de Registro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body modern-body">
+                <form class="needs-validation modern-form" id="registerForm" novalidate>
+                    <div class="form-group">
+                        <input type="text" class="form-control modern-input" id="validationNombre" placeholder="Ingrese un nombre" required />
+                        <div class="invalid-feedback">Por favor, ingrese un nombre válido.</div>
+                    </div>
+                    <button class="btn modern-btn-primary" type="submit" id="submitModalForm-btn">Agregar</button>
+                </form>
+                <hr class="modern-divider" />
+                <footer class="modern-footer">
+                    <label for="fileInput" class="modern-label" >Seleccione un archivo</label>
+                    <input type="file" id="fileInput" accept=".xlsx" class="display-none"/>
+                    <button id="uploadButton" class="btn modern-btn-secondary hidden">Cargar Archivo</button>
+                    <p>Seleccione y cargue un archivo Excel con una lista de nombres.</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .modal {
+        border-radius: 12px;
+        margin-left: 25px;
+    }
+  /* === Modern Modal Styles === */
+  .modal-content.modern-modal {
+    border-radius: 12px;
+    background: #f9f9f9;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: none;
+  }
+
+  .modal-header.modern-header {
+    color: white;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding: 16px;
+  }
+
+  .modal-header .btn-close {
+    filter: brightness(85%);
+  }
+
+  .modal-header .btn-close:hover {
+    filter: brightness(100%);
+  }
+
+  .modal-body.modern-body {
+    padding: 24px;
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+  }
+
+  form.modern-form .form-group {
+    margin-bottom: 20px;
+  }
+
+  input.modern-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  input.modern-input:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    outline: none;
+  }
+
+  /* Buttons */
+  button.modern-btn-primary {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button.modern-btn-primary:hover {
+    background: #45a049;
+  }
+
+  button.modern-btn-secondary {
+    background: #008cba;
+    color: white;
+    border: none;
+    margin: 10px 0;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button.modern-btn-secondary:hover {
+    background: #007bb5;
+  }
+
+  /* Footer */
+  footer.modern-footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  label.modern-label {
+    display: inline-block;
+    background-color: #008cba;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  label.modern-label:hover {
+    background-color: #007bb5;
+  }
+
+  /* Divider */
+  hr.modern-divider {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+  }
+
+  #newRegisterModal p {
+    margin-top: 10px;
+  }
+
+  /* Hidden elements */
+  .hidden {
+    display: none;
+  }
+</style>

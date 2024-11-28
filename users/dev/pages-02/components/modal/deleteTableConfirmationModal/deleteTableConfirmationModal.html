@@ -1,0 +1,61 @@
+<!-- deleteTableConfirmationModal.html -->
+<div class="modal card display-center" id="deleteTableConfirmationModal" style="display: none;">
+  <h1 class="modal-header modal-title">Modal de Confirmación</h1>
+  <div class="modal-content">
+    <label>¿Estás seguro que deseas borrar completamente este libro de registro?</label>
+  </div>
+  <div class="footer display-flex-center bg-white">
+    <button class="button" id="cancel-delete">Cancelar</button>
+    <button class="button" id="confirm-delete">Aceptar</button>
+  </div>
+</div>
+
+<style>
+  .modal {
+    background-color: #fff;
+    width: 360px;
+    height: 80%;
+  }
+
+  .modal .modal-header {
+    text-align: center;
+    margin-bottom: .5em;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #007bff;
+  }
+
+  .modal .modal-content label {
+    color: var(--clr-text);
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: 500;
+    text-align: center;
+    padding: 1em;
+    margin: 0;
+  }
+
+  .modal #cancel-delete {
+    background-color: transparent;
+    border-color: var(--clr-text);
+    color: var(--clr-text);
+    font-weight: 500;
+    font-size: 1em;
+  }
+
+  .modal #confirm-delete {
+    background-color: var(--clr-error);
+    color: white;
+    border: none;
+    font-weight: 500;
+    font-size: 1em;
+  }
+
+  .modal .footer {
+    margin-top: 0px;
+    background-color: transparent;
+  }
+</style>

@@ -6,15 +6,16 @@ import { checkAuth } from '../../../modules/accessControl/authCheck.js';
 import { getUserRole } from "../../../modules/accessControl/getUserRole.js";
 import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
 
-import "./modules/downloadToExcel.js";
-import { deleteRow } from "./modules/deleteRow.js";
-import { addEditEventListeners } from "./modules/editRow.js";
-// import { handleFileUpload } from './modules/Excel/uploadExcelHandler.js';
+import "./modules/deleteTable.js";
+import "./modules/Excel/downloadToExcel.js";
+import { deleteRow } from "./modules/tabla/deleteRow.js";
+import { addEditEventListeners } from "./modules/tabla/editRow.js";
+import { handleFileUpload } from './modules/Excel/uploadExcelHandler.js';
 
 import { initializeSearch } from "./modules/searchFunction.js";
 import { initScrollButtons } from "../modules/scrollButtons.js";
 import { includeHTML } from '../components/includeHTML/includeHTML.js';
-import { updateSelectElements } from './modules/updateSelectElements.js';
+import { updateSelectElements } from './modules/tabla/updateSelectElements.js';
 import { getMonthAndYearFromDataCollection, generateCalendarHeaders,
     generateColumnTotals, generateCalendarDays } from "./modules/tabla/calendarUtils.js";
 
@@ -116,9 +117,9 @@ export function mostrarDatos() {
 
 // Inicializa la tabla y eventos al cargar el documento
 document.addEventListener('DOMContentLoaded', async () => {
-    setCollectionByCurrentMonth();
     checkAuth();
     checkUserAccess();
+    setCollectionByCurrentMonth();
   
     // Verifica el rol del usuario autenticado
     try {
@@ -128,11 +129,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.error("Error al obtener el rol del usuario:", error);
     }
     
-    mostrarDatos();
     includeHTML();
+    mostrarDatos();
+    handleFileUpload();
     initializeSearch(document.getElementById("contenidoTabla"));
     initScrollButtons(document.getElementById("contenidoTabla"));
-    // handleFileUpload();
 });
 
 console.log(database);

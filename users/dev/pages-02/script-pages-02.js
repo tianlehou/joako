@@ -2,7 +2,7 @@ import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebas
 import { database } from "../../../environment/firebaseConfig.js";
 
 import "./modules/newRegister.js";
-import { checkAuth } from '../../../modules/accessControl/authCheck.js';
+import { checkAuth } from "../../../modules/accessControl/authCheck.js";
 import { getUserRole } from "../../../modules/accessControl/getUserRole.js";
 import { checkUserAccess } from "../../../modules/accessControl/roleAccessControl.js";
 
@@ -11,6 +11,7 @@ import "./modules/Excel/downloadToExcel.js";
 import { deleteRow } from "./modules/tabla/deleteRow.js";
 import { addEditEventListeners } from "./modules/tabla/editRow.js";
 import { handleFileUpload } from './modules/Excel/uploadExcelHandler.js';
+import { formatWithArrobaBreaks } from "../../../modules/tabla/format/formatCel.js";
 
 import { initializeSearch } from "./modules/searchFunction.js";
 import { initScrollButtons } from "../modules/scrollButtons.js";
@@ -94,8 +95,8 @@ export function mostrarDatos() {
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${user.nombre}</td>
-                <td>${user.correoConductor || ''}</td>
-                <td>${user.correoPropietario || ''}</td>
+                <td>${formatWithArrobaBreaks(user.correoConductor || '')}</td>
+                <td>${formatWithArrobaBreaks(user.correoPropietario || '')}</td>
                 <td class="display-flex-center action-col">
                     <button class="btn btn-primary mg-05em edit-user-button" data-id="${user.id}">
                         <i class="bi bi-pencil"></i>

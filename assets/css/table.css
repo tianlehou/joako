@@ -17,9 +17,9 @@ body, table {
 .table th, .table td {
     padding: 8px;
     border: 1px solid #ddd;
-    text-align: center;
     white-space: nowrap;
     color: #666;
+    text-align: center;
 }
 
 /* Table Header */
@@ -82,6 +82,7 @@ th.sunday {
 
 td {
     vertical-align: middle;
+    font-size: 12px;
     height: 100%;
 }
 
